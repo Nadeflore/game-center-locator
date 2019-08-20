@@ -20,11 +20,11 @@ export default {
     }
   },
   mounted () {
-    axios.get('games.json')
+    axios.get('data/games.json')
       .then(response => {
         this.games = response.data
       })
-    axios.get('game_centers.json')
+    axios.get('data/game_centers.json')
       .then(response => {
         this.gameCenters = response.data
       })
