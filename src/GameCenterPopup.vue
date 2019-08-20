@@ -26,12 +26,12 @@ export default {
       }
       const result = []
       for (let category of this.gamesByCategory) {
-        const games_for_category = category.games.filter(game => this.gameCenter.gameIds.includes(game.id))
-        if (games_for_category.length > 0) {
+        const gamesForCategory = category.games.filter(game => this.gameCenter.gameIds.includes(game.id))
+        if (gamesForCategory.length > 0) {
           result.push({
             id: category.id,
             name: category.name,
-            games: games_for_category
+            games: gamesForCategory
           })
         }
       }

@@ -49,23 +49,22 @@ export default {
         })
       })
 
-
       // Create empty vector source
       this.source = new VectorSource({})
 
       // Style for markers
       const getIconStyle = (feature) => {
         // game amount
-        const gamesCount = feature.get("gameCenter").gameIds.length
+        const gamesCount = feature.get('gameCenter').gameIds.length
         let amount
         if (gamesCount <= 3) {
-            amount = 'l'
+          amount = 'l'
         } else if (gamesCount > 15) {
-            amount = 'h'
+          amount = 'h'
         } else {
-            amount = 'm'
+          amount = 'm'
         }
-        
+
         return new Style({
           image: new Icon({
             anchor: [0.5, 0.97],
@@ -87,7 +86,7 @@ export default {
     setMarkers () {
       // Filter game centers
       const gameCentersFiltered = this.gameCenters.filter(gameCenter => this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length > 0)
-        
+
       // clear existing markers
       this.source.clear()
       // Create a feature for each game center
