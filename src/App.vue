@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <Map :games="games" :gameCenters="gameCenters"/>
+    <FilterPanel :gamesByCategory="gamesByCategory" v-on:change="updateFilteredGames"/>
+    <Map :gamesByCategory="gamesByCategory" :gameCenters="gameCenters" :filteredGameIds="filteredGameIds"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Map from './Map.vue'
+import FilterPanel from './FilterPanel.vue'
 
 export default {
   name: 'app',
   components: {
-    Map
+    Map,
+    FilterPanel
   },
   data () {
     return {
       gameCenters: [],
-      games: {}
+      gamesByCategory: [],
+      filteredGameIds: []
+    }
+  },
+  methods: {
+    updateFilteredGames (gameIds) {
+      this.filteredGameIds = gameIds
     }
   },
   mounted () {
-    axios.get('data/games.json')
+    axios.get('data/games_by_category.json')
       .then(response => {
-        this.games = response.data
+        this.gamesByCategory = response.data
       })
     axios.get('data/game_centers.json')
       .then(response => {
@@ -39,5 +48,13 @@ html, body, #app {
     padding: 0;
     margin: 0;
     overflow: hidden;
+}
+
+#app {
+  display: flex;
+}
+
+#map {
+  flex: 1;
 }
 </style>

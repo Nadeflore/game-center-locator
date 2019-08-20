@@ -1,6 +1,6 @@
 <template>
   <div id='map'>
-    <GameCenterPopup :gameCenter="selectedGameCenter" :games="games" v-on:close="closePopup" ref="popup"/>
+    <GameCenterPopup :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" v-on:close="closePopup" ref="popup"/>
   </div>
 </template>
 
@@ -8,6 +8,7 @@
 import 'ol/ol.css'
 import { fromLonLat } from 'ol/proj'
 import { Point } from 'ol/geom'
+import { Style, Icon } from 'ol/style'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import Overlay from 'ol/Overlay'
@@ -21,10 +22,11 @@ export default {
   components: {
     GameCenterPopup
   },
-  props: ['games', 'gameCenters'],
+  props: ['gamesByCategory', 'gameCenters', 'filteredGameIds'],
   data () {
     return {
       map: null,
+      source: null,
       selectedGameCenter: null
     }
   },
@@ -46,19 +48,58 @@ export default {
           zoom: 12
         })
       })
+
+
+      // Create empty vector source
+      this.source = new VectorSource({})
+
+      // Style for markers
+      const getIconStyle = (feature) => {
+        // game amount
+        const gamesCount = feature.get("gameCenter").gameIds.length
+        let amount
+        if (gamesCount <= 3) {
+            amount = 'l'
+        } else if (gamesCount > 15) {
+            amount = 'h'
+        } else {
+            amount = 'm'
+        }
+        
+        return new Style({
+          image: new Icon({
+            anchor: [0.5, 0.97],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'fraction',
+            opacity: 0.80,
+            src: `img/icon_${amount}.png`
+          })
+        })
+      }
+
+      // Create vector layer
+      const layer = new VectorLayer({
+        source: this.source,
+        style: getIconStyle
+      })
+      this.map.addLayer(layer)
     },
     setMarkers () {
+      // Filter game centers
+      const gameCentersFiltered = this.gameCenters.filter(gameCenter => this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length > 0)
+        
+      // clear existing markers
+      this.source.clear()
       // Create a feature for each game center
-      const features = this.gameCenters.map((gameCenter) =>
+      const features = gameCentersFiltered.map((gameCenter) =>
         new Feature({
           geometry: new Point(fromLonLat([gameCenter.longitude, gameCenter.latitude])),
           gameCenter
         })
       )
 
-      const source = new VectorSource({ features })
-      const layer = new VectorLayer({ source })
-      this.map.addLayer(layer)
+      // Add features to source
+      this.source.addFeatures(features)
     },
     setPopup () {
       this.popupOverlay = new Overlay({
@@ -98,6 +139,10 @@ export default {
     gameCenters (val) {
       // Set markers again if game centers list changed
       this.setMarkers()
+    },
+    filteredGameIds (val) {
+      // Set markers again if filter changed
+      this.setMarkers()
     }
   },
   mounted () {
@@ -116,7 +161,6 @@ export default {
 
 <style scoped>
 #map {
-    width: 100%;
     height: 100%;
 }
 </style>

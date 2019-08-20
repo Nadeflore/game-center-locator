@@ -3,10 +3,10 @@
     <button v-on:click="$emit('close')" class="popup-closer"/>
     <div class="popup-content">
       <h3>{{gameCenter? gameCenter.name : ''}}</h3>
-      <div v-for="(games, category) in gamesByCategory" class="category" :key="category">
-        <h4>{{ category }}</h4>
+      <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
+        <h4>{{ category.name }}</h4>
         <ul>
-          <li v-for="game in games" :key="game.name">{{game.name}}</li>
+          <li v-for="game in category.games" :key="game.id">{{game.name}}</li>
         </ul>
       </div>
     </div>
@@ -18,22 +18,21 @@
 export default {
   name: 'gameCenterPopup',
   components: {},
-  props: ['gameCenter', 'games'],
+  props: ['gameCenter', 'gamesByCategory'],
   computed: {
-    gamesByCategory () {
+    gamesForGameCenterByCategory () {
       if (!this.gameCenter) {
         return {}
       }
-      const result = {}
-      for (let gameId in this.games) {
-        if (this.gameCenter.game_ids.includes(gameId)) {
-          const game = this.games[gameId]
-          const category = game.category
-          if (result[category]) {
-            result[category].push(game)
-          } else {
-            result[category] = [game]
-          }
+      const result = []
+      for (let category of this.gamesByCategory) {
+        const games_for_category = category.games.filter(game => this.gameCenter.gameIds.includes(game.id))
+        if (games_for_category.length > 0) {
+          result.push({
+            id: category.id,
+            name: category.name,
+            games: games_for_category
+          })
         }
       }
       return result
