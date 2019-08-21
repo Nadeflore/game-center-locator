@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <FilterPanel :gamesByCategory="gamesByCategory" v-on:change="updateFilteredGames"/>
-    <Map :gamesByCategory="gamesByCategory" :gameCenters="gameCenters" :filteredGameIds="filteredGameIds"/>
+    <Map :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds"/>
   </div>
 </template>
 
@@ -18,7 +18,6 @@ export default {
   },
   data () {
     return {
-      gameCenters: [],
       gamesByCategory: [],
       filteredGameIds: []
     }
@@ -32,10 +31,6 @@ export default {
     axios.get('data/games_by_category.json')
       .then(response => {
         this.gamesByCategory = response.data
-      })
-    axios.get('data/game_centers.json')
-      .then(response => {
-        this.gameCenters = response.data
       })
   }
 }

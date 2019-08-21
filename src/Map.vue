@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import 'ol/ol.css'
 import { fromLonLat } from 'ol/proj'
 import { Point } from 'ol/geom'
@@ -22,12 +23,13 @@ export default {
   components: {
     GameCenterPopup
   },
-  props: ['gamesByCategory', 'gameCenters', 'filteredGameIds'],
+  props: ['gamesByCategory', 'filteredGameIds'],
   data () {
     return {
       map: null,
       source: null,
-      selectedGameCenter: null
+      selectedGameCenter: null,
+      features: []
     }
   },
   methods: {
@@ -83,22 +85,24 @@ export default {
       })
       this.map.addLayer(layer)
     },
-    setMarkers () {
-      // Filter game centers
-      const gameCentersFiltered = this.gameCenters.filter(gameCenter => this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length > 0)
-
-      // clear existing markers
-      this.source.clear()
+    createFeatures (gameCenters) {
       // Create a feature for each game center
-      const features = gameCentersFiltered.map((gameCenter) =>
+      this.features = gameCenters.map((gameCenter) =>
         new Feature({
           geometry: new Point(fromLonLat([gameCenter.longitude, gameCenter.latitude])),
           gameCenter
         })
       )
+    },
+    updateMarkers () {
+      // Filter game centers
+      const featuresFiltered = this.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
+
+      // clear existing markers
+      this.source.clear()
 
       // Add features to source
-      this.source.addFeatures(features)
+      this.source.addFeatures(featuresFiltered)
     },
     setPopup () {
       this.popupOverlay = new Overlay({
@@ -135,21 +139,20 @@ export default {
     }
   },
   watch: {
-    gameCenters (val) {
-      // Set markers again if game centers list changed
-      this.setMarkers()
-    },
     filteredGameIds (val) {
-      // Set markers again if filter changed
-      this.setMarkers()
+      // Update markers if filter changed
+      this.updateMarkers()
     }
   },
   mounted () {
     // Create basic map
     this.createMap()
 
-    // Add markers
-    this.setMarkers()
+    // Request game centers list
+    axios.get('data/game_centers.json')
+      .then(response => {
+        this.createFeatures(response.data)
+      })
 
     // Setup popup
     this.setPopup()
