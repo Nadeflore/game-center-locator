@@ -15,6 +15,12 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer'
 import { XYZ, Vector as VectorSource } from 'ol/source.js'
 import Feature from 'ol/Feature'
 
+const unwatchedStore = {
+  map: null,
+  source: null,
+  features: []
+}
+
 export default {
   name: 'gameCenterMap',
   components: {
@@ -22,16 +28,13 @@ export default {
   props: ['gamesByCategory', 'filteredGameIds', 'panelCollapsed'],
   data () {
     return {
-      map: null,
-      source: null,
       selectedGameCenter: null,
-      features: []
     }
   },
   methods: {
     createMap () {
       const center = fromLonLat([135.4824549, 34.6826779])
-      this.map = new Map({
+      unwatchedStore.map = new Map({
         target: 'map',
         layers: [
           new TileLayer({
@@ -48,7 +51,7 @@ export default {
       })
 
       // Create empty vector source
-      this.source = new VectorSource({})
+      unwatchedStore.source = new VectorSource({})
 
       // Style for markers
       const getIconStyle = (feature) => {
@@ -76,14 +79,14 @@ export default {
 
       // Create vector layer
       const layer = new VectorLayer({
-        source: this.source,
+        source: unwatchedStore.source,
         style: getIconStyle
       })
-      this.map.addLayer(layer)
+      unwatchedStore.map.addLayer(layer)
     },
     createFeatures (gameCenters) {
       // Create a feature for each game center
-      this.features = gameCenters.map((gameCenter) =>
+      unwatchedStore.features = gameCenters.map((gameCenter) =>
         new Feature({
           geometry: new Point(fromLonLat([gameCenter.longitude, gameCenter.latitude])),
           gameCenter
@@ -92,18 +95,18 @@ export default {
     },
     updateMarkers () {
       // Filter game centers
-      const featuresFiltered = this.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
+      const featuresFiltered = unwatchedStore.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
 
       // clear existing markers
-      this.source.clear()
+      unwatchedStore.source.clear()
 
       // Add features to source
-      this.source.addFeatures(featuresFiltered)
+      unwatchedStore.source.addFeatures(featuresFiltered)
     },
     setFeatureClickBehaviour () {
       // Set callback so that clicking a feature set it as selected
-      this.map.on('click', (evt) => {
-        const feature = this.map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => feature)
+      unwatchedStore.map.on('click', (evt) => {
+        const feature = unwatchedStore.map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => feature)
         if (feature) {
           this.selectedGameCenter = feature.get('gameCenter')
           this.$emit('selectGameCenter', this.selectedGameCenter)
@@ -111,13 +114,13 @@ export default {
       })
 
       // Set callback so that pointer icon is show when hovering marker
-      this.map.on('pointermove', (e) => {
+      unwatchedStore.map.on('pointermove', (e) => {
         if (e.dragging) return
 
-        const pixel = this.map.getEventPixel(e.originalEvent)
-        const hit = this.map.hasFeatureAtPixel(pixel)
+        const pixel = unwatchedStore.map.getEventPixel(e.originalEvent)
+        const hit = unwatchedStore.map.hasFeatureAtPixel(pixel)
 
-        this.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
+        unwatchedStore.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
       })
     }
   },
@@ -128,7 +131,7 @@ export default {
     },
     panelCollapsed (val) {
       // Update map size if panel collapse size change
-      this.map.updateSize()
+      unwatchedStore.map.updateSize()
     }
   },
   mounted () {
