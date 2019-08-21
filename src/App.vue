@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <FilterPanel :gamesByCategory="gamesByCategory" v-on:change="updateFilteredGames"/>
-    <Map :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds"/>
+    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames" @collapse="updatePanelCollapsed"/>
+    <Map :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" :panelCollapsed="panelCollapsed" @selectGameCenter="updateSelectedGameCenter"/>
+    <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds"/>
   </div>
 </template>
 
@@ -9,22 +10,32 @@
 import axios from 'axios'
 import Map from './Map.vue'
 import FilterPanel from './FilterPanel.vue'
+import GameCenterPanel from './GameCenterPanel.vue'
 
 export default {
   name: 'app',
   components: {
     Map,
-    FilterPanel
+    FilterPanel,
+    GameCenterPanel
   },
   data () {
     return {
       gamesByCategory: [],
-      filteredGameIds: []
+      filteredGameIds: [],
+      panelCollapsed: false,
+      selectedGameCenter: null
     }
   },
   methods: {
     updateFilteredGames (gameIds) {
       this.filteredGameIds = gameIds
+    },
+    updatePanelCollapsed (collapsed) {
+      this.panelCollapsed = collapsed
+    },
+    updateSelectedGameCenter (gameCenter) {
+      this.selectedGameCenter = gameCenter
     }
   },
   mounted () {
@@ -43,6 +54,7 @@ html, body, #app {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-family: sans-serif;
 }
 
 #app {

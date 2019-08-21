@@ -1,15 +1,18 @@
 <template>
-  <div id="filterPanel">
-    <h2>Filter Panel</h2>
-      <div v-for="category in gamesByCategory" class="category" :key="category.id">
-        <h4><input type="checkbox" :id="category.id" @change="categoryStateChange(category, $event)"/><label :for="category.id">{{ category.name }}</label></h4>
-        <ul>
-          <li v-for="game in category.games" :key="game.id">
-            <input type="checkbox" :id="game.id" :value="game.id" v-model="selectedGameIds"/>
-            <label :for="game.id">{{game.name}}</label>
-          </li>
-        </ul>
-      </div>
+  <div id="filterPanelContainer">
+    <div id="filterPanel" v-if="!collapsed">
+      <h2>Filter Panel</h2>
+        <div v-for="category in gamesByCategory" class="category" :key="category.id">
+          <h4><input type="checkbox" :id="category.id" @change="categoryStateChange(category, $event)"/><label :for="category.id">{{ category.name }}</label></h4>
+          <ul>
+            <li v-for="game in category.games" :key="game.id">
+              <input type="checkbox" :id="game.id" :value="game.id" v-model="selectedGameIds"/>
+              <label :for="game.id">{{game.name}}</label>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div id="panelTab" @click="toogleCollapse">{{collapsed ? '&gt;' : '&lt;'}}</div>
   </div>
 </template>
 
@@ -22,7 +25,8 @@ export default {
   props: ['gamesByCategory'],
   data () {
     return {
-      selectedGameIds: []
+      selectedGameIds: [],
+      collapsed: false
     }
   },
   methods: {
@@ -39,6 +43,10 @@ export default {
         // Remove all games of this category
         this.selectedGameIds = this.selectedGameIds.filter(gameId => !categoryGameIds.includes(gameId))
       }
+    },
+    toogleCollapse () {
+      this.collapsed = !this.collapsed
+      this.$emit('collapse', this.collapsed)
     }
   },
   watch: {
@@ -51,8 +59,25 @@ export default {
 
 <style>
 #filterPanel {
+  width: 15em;
+  height: 100%;
   padding: 1em;
-  width: 20em;
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+
+#filterPanelContainer {
+  position: relative;
+}
+
+#panelTab {
+  position: absolute;
+  right: -2.5em;
+  top: 0;
+  width: 1.5em;
+  height: 1.5em;
+  text-align:center;
+  background-color: white;
+  padding: .5em;
+  z-index: 1;
 }
 </style>

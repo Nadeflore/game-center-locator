@@ -1,6 +1,5 @@
 <template>
   <div id='map'>
-    <GameCenterPopup :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" v-on:close="closePopup" ref="popup"/>
   </div>
 </template>
 
@@ -12,18 +11,15 @@ import { Point } from 'ol/geom'
 import { Style, Icon } from 'ol/style'
 import Map from 'ol/Map'
 import View from 'ol/View'
-import Overlay from 'ol/Overlay'
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer'
 import { XYZ, Vector as VectorSource } from 'ol/source.js'
 import Feature from 'ol/Feature'
-import GameCenterPopup from './GameCenterPopup.vue'
 
 export default {
   name: 'gameCenterMap',
   components: {
-    GameCenterPopup
   },
-  props: ['gamesByCategory', 'filteredGameIds'],
+  props: ['gamesByCategory', 'filteredGameIds', 'panelCollapsed'],
   data () {
     return {
       map: null,
@@ -104,23 +100,13 @@ export default {
       // Add features to source
       this.source.addFeatures(featuresFiltered)
     },
-    setPopup () {
-      this.popupOverlay = new Overlay({
-        element: this.$refs['popup'].$el,
-        autoPan: true,
-        offset: [0, -50]
-      })
-      this.map.addOverlay(this.popupOverlay)
-
-      // Set callback so that clicking a feature opens popup
+    setFeatureClickBehaviour () {
+      // Set callback so that clicking a feature set it as selected
       this.map.on('click', (evt) => {
         const feature = this.map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => feature)
         if (feature) {
-          const geometry = feature.getGeometry()
-          const coord = geometry.getCoordinates()
-
           this.selectedGameCenter = feature.get('gameCenter')
-          this.popupOverlay.setPosition(coord)
+          this.$emit('selectGameCenter', this.selectedGameCenter)
         }
       })
 
@@ -133,15 +119,16 @@ export default {
 
         this.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
       })
-    },
-    closePopup () {
-      this.popupOverlay.setPosition(undefined)
     }
   },
   watch: {
     filteredGameIds (val) {
       // Update markers if filter changed
       this.updateMarkers()
+    },
+    panelCollapsed (val) {
+      // Update map size if panel collapse size change
+      this.map.updateSize()
     }
   },
   mounted () {
@@ -154,15 +141,19 @@ export default {
         this.createFeatures(response.data)
       })
 
-    // Setup popup
-    this.setPopup()
+    // Setup feature click behaviour
+    this.setFeatureClickBehaviour()
   }
 }
 
 </script>
 
-<style scoped>
+<style>
 #map {
     height: 100%;
+}
+.ol-zoom {
+  right: .5em;
+  left: auto;
 }
 </style>
