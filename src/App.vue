@@ -1,30 +1,22 @@
 <template>
   <div id="app">
-    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames" @collapse="updatePanelCollapsed"/>
-    <Map :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" :panelCollapsed="panelCollapsed" @selectGameCenter="updateSelectedGameCenter"/>
-    <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds"/>
+    <Map :gamesByCategory="gamesByCategory"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
 import Map from './Map.vue'
-import FilterPanel from './FilterPanel.vue'
-import GameCenterPanel from './GameCenterPanel.vue'
 
 export default {
   name: 'app',
   components: {
-    Map,
-    FilterPanel,
-    GameCenterPanel
+    Map
   },
   data () {
     return {
-      gamesByCategory: [],
-      filteredGameIds: [],
-      panelCollapsed: false,
-      selectedGameCenter: null
+      gamesByCategory: []
     }
   },
   methods: {
@@ -49,19 +41,12 @@ export default {
 
 <style>
 html, body, #app {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
 }
 
-#app {
-  display: flex;
-}
-
-#map {
-  flex: 1;
-}
 </style>

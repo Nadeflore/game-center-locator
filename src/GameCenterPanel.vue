@@ -1,6 +1,6 @@
 <template>
   <div id="gameCenterPanel" v-if="gameCenter">
-    <button v-on:click="('close')" class="panel-closer"/>
+    <button v-on:click="$emit('close')" class="panel-closer">X</button>
     <div class="panel-content">
       <h3>{{gameCenter? gameCenter.name : ''}}</h3>
       <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
@@ -56,5 +56,7 @@ export default {
 
 .panel-closer {
   position:absolute;
+  right: 0.5em;
+  top: 0.5em;
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <div id='map'>
+  <div id="mapPanelContainer">
+    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames" @collapse="updateMapSize"/>
+    <div id='map'>
+    </div>
+    <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
   </div>
 </template>
 
@@ -15,6 +19,9 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer'
 import { XYZ, Vector as VectorSource } from 'ol/source.js'
 import Feature from 'ol/Feature'
 
+import FilterPanel from './FilterPanel.vue'
+import GameCenterPanel from './GameCenterPanel.vue'
+
 const unwatchedStore = {
   map: null,
   source: null,
@@ -24,11 +31,14 @@ const unwatchedStore = {
 export default {
   name: 'gameCenterMap',
   components: {
+    FilterPanel,
+    GameCenterPanel
   },
-  props: ['gamesByCategory', 'filteredGameIds', 'panelCollapsed'],
+  props: ['gamesByCategory'],
   data () {
     return {
       selectedGameCenter: null,
+      filteredGameIds: []
     }
   },
   methods: {
@@ -55,8 +65,9 @@ export default {
 
       // Style for markers
       const getIconStyle = (feature) => {
+        const gameCenter = feature.get('gameCenter')
         // game amount
-        const gamesCount = feature.get('gameCenter').gameIds.length
+        const gamesCount = gameCenter.gameIds.length
         let amount
         if (gamesCount <= 3) {
           amount = 'l'
@@ -69,11 +80,13 @@ export default {
         return new Style({
           image: new Icon({
             anchor: [0.5, 0.97],
+            scale: this.selectedGameCenter == gameCenter ? 1.5 : 1,
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
-            opacity: 0.80,
+            opacity: 0.90,
             src: `img/icon_${amount}.png`
-          })
+          }),
+          zIndex: this.selectedGameCenter == gameCenter ? 2 : undefined,
         })
       }
 
@@ -122,39 +135,64 @@ export default {
 
         unwatchedStore.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
       })
+    },
+    updateFilteredGames (filteredGameIds) {
+      this.filteredGameIds = filteredGameIds
+    },
+    updateMapSize () {
+      // When a panel is opened/closed, thus modidifing the size of the map div,
+      // Map size need to be updated
+      // This is done after everything has been redrawn
+      this.$nextTick(() => {
+        unwatchedStore.map.updateSize()
+      })
     }
   },
   watch: {
-    filteredGameIds (val) {
+    filteredGameIds () {
       // Update markers if filter changed
       this.updateMarkers()
     },
-    panelCollapsed (val) {
-      // Update map size if panel collapse size change
-      unwatchedStore.map.updateSize()
+    selectedGameCenter (newVal, oldVal) {
+      // Update source to make selected icon bigger
+      unwatchedStore.source.dispatchEvent('change')
+
+      if (newVal == null || oldVal == null) {
+        // If panel was opened or closed, update map size
+        this.updateMapSize()
+      }
     }
   },
   mounted () {
     // Create basic map
     this.createMap()
 
+    // Setup feature click behaviour
+    this.setFeatureClickBehaviour()
+
     // Request game centers list
     axios.get('data/game_centers.json')
       .then(response => {
         this.createFeatures(response.data)
       })
-
-    // Setup feature click behaviour
-    this.setFeatureClickBehaviour()
   }
 }
 
 </script>
 
 <style>
-#map {
-    height: 100%;
+#mapPanelContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
+
+#map {
+  flex: 1;
+  height: 100%;
+}
+/* Place zoom controls on the bottom right */
 .ol-zoom {
   right: .5em;
   left: auto;
