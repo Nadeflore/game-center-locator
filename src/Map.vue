@@ -80,13 +80,13 @@ export default {
         return new Style({
           image: new Icon({
             anchor: [0.5, 0.97],
-            scale: this.selectedGameCenter == gameCenter ? 1.5 : 1,
+            scale: this.selectedGameCenter === gameCenter ? 1.5 : 1,
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
             opacity: 0.90,
             src: `img/icon_${amount}.png`
           }),
-          zIndex: this.selectedGameCenter == gameCenter ? 2 : undefined,
+          zIndex: this.selectedGameCenter === gameCenter ? 2 : undefined
         })
       }
 
@@ -108,7 +108,13 @@ export default {
     },
     updateMarkers () {
       // Filter game centers
-      const featuresFiltered = unwatchedStore.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
+      let featuresFiltered
+      if (this.filteredGameIds.length === 0) {
+        // when no game selected display all
+        featuresFiltered = unwatchedStore.features
+      } else {
+        featuresFiltered = unwatchedStore.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
+      }
 
       // clear existing markers
       unwatchedStore.source.clear()
@@ -174,6 +180,7 @@ export default {
     axios.get('data/game_centers.json')
       .then(response => {
         this.createFeatures(response.data)
+        this.updateMarkers()
       })
   }
 }

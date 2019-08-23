@@ -2,7 +2,8 @@
   <div id="gameCenterPanel" v-if="gameCenter">
     <button v-on:click="$emit('close')" class="panel-closer">X</button>
     <div class="panel-content">
-      <h3>{{gameCenter? gameCenter.name : ''}}</h3>
+      <h3>{{gameCenter.name}}</h3>
+      <p>{{gameCenter.address}}</p>
       <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
         <h4>{{ category.name }}</h4>
         <ul>
