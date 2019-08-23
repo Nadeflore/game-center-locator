@@ -59,10 +59,10 @@ export default {
 
 <style>
 #filterPanel {
-  width: 15em;
+  width: 20em;
   height: 100%;
   padding: 1em;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #filterPanelContainer {
@@ -71,10 +71,10 @@ export default {
 
 #panelTab {
   position: absolute;
-  right: -2.5em;
+  right: -2em;
   top: 0;
-  width: 1.5em;
-  height: 1.5em;
+  width: 2em;
+  height: 2em;
   text-align:center;
   background-color: white;
   padding: .5em;

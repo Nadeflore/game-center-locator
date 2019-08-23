@@ -1,7 +1,7 @@
 <template>
   <div id="gameCenterPanel" v-if="gameCenter">
     <button v-on:click="$emit('close')" class="panel-closer">X</button>
-    <div class="panel-content">
+    <div class="panel-content" :key="gameCenter.name">
       <h3>{{gameCenter.name}}</h3>
       <p>{{gameCenter.address}}</p>
       <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
@@ -52,7 +52,7 @@ export default {
   width: 20em;
   height: 100%;
   padding: 1em;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .panel-closer {

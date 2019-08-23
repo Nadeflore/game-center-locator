@@ -48,5 +48,9 @@ html, body, #app {
   overflow: hidden;
   font-family: sans-serif;
 }
-
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 </style>
