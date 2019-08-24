@@ -324,4 +324,10 @@ export default {
   right: .5em;
   bottom: 7em;
 }
+.ol-touch .ol-zoom {
+  bottom: 4em;
+}
+.ol-touch .center-map {
+  bottom: 9em;
+}
 </style>
