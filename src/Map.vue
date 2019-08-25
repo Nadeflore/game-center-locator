@@ -41,7 +41,8 @@ export default {
   data () {
     return {
       selectedGameCenter: null,
-      filteredGameIds: []
+      filteredGameIds: [],
+      selectedAmountFilter: 1
     }
   },
   methods: {
@@ -197,7 +198,11 @@ export default {
         // when no game selected display all
         featuresFiltered = unwatchedStore.features
       } else {
-        featuresFiltered = unwatchedStore.features.filter(feature => this.filteredGameIds.filter(gameId => feature.get('gameCenter').gameIds.includes(gameId)).length > 0)
+        // Only keep game centers with a least `selectedAmountFilter` of the selected games
+        featuresFiltered = unwatchedStore.features.filter(feature => {
+          const gameCenter = feature.get('gameCenter')
+          return this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length >= this.selectedAmountFilter
+        })
       }
 
       // clear existing markers
@@ -241,8 +246,9 @@ export default {
         unwatchedStore.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
       })
     },
-    updateFilteredGames (filteredGameIds) {
+    updateFilteredGames (filteredGameIds, selectedAmountFilter) {
       this.filteredGameIds = filteredGameIds
+      this.selectedAmountFilter = selectedAmountFilter
     },
     updateMapSize () {
       // When a panel is opened/closed, thus modidifing the size of the map div,
@@ -268,6 +274,10 @@ export default {
   watch: {
     filteredGameIds () {
       // Update markers if filter changed
+      this.updateMarkers()
+    },
+    selectedAmountFilter () {
+      // Update markers if filter amount ratio changed
       this.updateMarkers()
     },
     selectedGameCenter (newVal, oldVal) {
