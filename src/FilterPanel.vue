@@ -3,7 +3,7 @@
     <div id="filterPanel" v-if="!collapsed">
       <h2>Filter Panel</h2>
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
-        <h4><input type="checkbox" :id="category.id" @change="categoryStateChange(category, $event)"/><label :for="category.id">{{ category.name }}</label></h4>
+        <h4><input type="checkbox" :id="category.id" v-bind.prop="getCategoryCheckStatus(category)" @change="categoryStateChange(category, $event)"/><label :for="category.id">{{ category.name }}</label></h4>
         <ul>
           <li v-for="game in category.games" :key="game.id">
             <input type="checkbox" :id="game.id" :value="game.id" v-model="selectedGameIds"/>
@@ -36,15 +36,23 @@ export default {
     }
   },
   methods: {
+    getCategoryCheckStatus (category) {
+      const selected = category.games.filter(game => this.selectedGameIds.includes(game.id))
+
+      const allSelected = selected.length === category.games.length
+      const someSelected = selected.length !== 0
+
+      return {
+        checked: allSelected,
+        indeterminate: someSelected && !allSelected
+      }
+    },
     categoryStateChange (category, event) {
       const categoryGameIds = category.games.map(game => game.id)
       if (event.target.checked) {
         // Add all games of this category
-        for (let gameId of categoryGameIds) {
-          if (!this.selectedGameIds.includes(gameId)) {
-            this.selectedGameIds.push(gameId)
-          }
-        }
+        const gameIdsToAdd = categoryGameIds.filter(gameId => !this.selectedGameIds.includes(gameId))
+        this.selectedGameIds = this.selectedGameIds.concat(gameIdsToAdd)
       } else {
         // Remove all games of this category
         this.selectedGameIds = this.selectedGameIds.filter(gameId => !categoryGameIds.includes(gameId))
