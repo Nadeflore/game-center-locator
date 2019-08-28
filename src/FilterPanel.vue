@@ -3,13 +3,9 @@
     <div id="filterPanel" v-if="!collapsed">
       <h2>Filter Panel</h2>
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
-        <h4 class="category-title">
-          <input type="checkbox" class="category-checkbox" :id="category.id" v-bind.prop="getCategoryCheckStatus(category)" @change="categoryStateChange(category, $event)"/>
-            <label class="category-label" :for="category.id">
-              <div class="category-checkbox-replacement"/>
-              <div class="category-name">{{ category.name }}</div>
-            </label>
-            <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
+        <h4 class="category-title-block">
+          <Checkbox class="category-checkbox" :id="category.id" :label="category.name" :status="getCategoryCheckStatus(category)" @change="categoryStateChange(category, $event)"/>
+          <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
         </h4>
         <ul v-show="expandedCategoryIds.includes(category.id)">
           <li v-for="game in category.games" :key="game.id">
@@ -29,10 +25,12 @@
 </template>
 
 <script>
+import Checkbox from './components/Checkbox.vue'
 
 export default {
   name: 'filterPanel',
   components: {
+    Checkbox
   },
   props: ['gamesByCategory'],
   data () {
@@ -125,68 +123,16 @@ export default {
   padding: .5em;
   z-index: 1;
 }
-
-.category-title {
+.category-title-block {
   --category-height: 50px;
-  position: relative;
   background: blue;
   color: white;
   height: var(--category-height);
   border-radius: calc(var(--category-height)/2);
   display: flex;
-  align-items: center;
 }
 .category-checkbox {
-  appearance: none;
-  margin: 0;
-}
-.category-label {
   flex: 1;
-  height: 100%;
-}
-/* inner circle representing checked status */
-.category-checkbox:checked + .category-label .category-checkbox-replacement:before {
-  content: " ";
-  background: white;
-  --check-size: 9px;
-  --check-position: calc((var(--checkbox-size) - var(--checkbox-border) * 2 - var(--check-size))/2);
-  position: absolute;
-  top: var(--check-position);
-  left: var(--check-position);
-  height: var(--check-size);
-  width: var(--check-size);
-  border-radius: calc(var(--check-size)/2);
-}
-/* inner half-circle representing indeterminate status */
-.category-checkbox:indeterminate+ .category-label .category-checkbox-replacement:before {
-  content: " ";
-  background: white;
-  --check-size: 9px;
-  --check-position: calc((var(--checkbox-size) - var(--checkbox-border) * 2 - var(--check-size))/2);
-  position: absolute;
-  top: var(--check-position);
-  left: var(--check-position);
-  height: var(--check-size);
-  width: calc(var(--check-size)/2);
-  border-bottom-left-radius: calc(var(--check-size)/2);
-  border-top-left-radius: calc(var(--check-size)/2);
-}
-/* Outside circle representing checkbox */
-.category-checkbox-replacement {
-  --checkbox-size: 23px;
-  --checkbox-position: calc((var(--category-height) - var(--checkbox-size))/2);
-  --checkbox-border: 4px;
-  position: absolute;
-  top: var(--checkbox-position);
-  left: var(--checkbox-position);
-  height: var(--checkbox-size);
-  width: var(--checkbox-size);
-  border-radius: calc(var(--checkbox-size)/2);
-  border: var(--checkbox-border) solid white;
-}
-.category-name {
-  margin-left: 50px;
-  line-height: var(--category-height);
 }
 .category-toogle-button {
   background: none;
