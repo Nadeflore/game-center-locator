@@ -1,9 +1,8 @@
 <template>
   <div id="filterPanelContainer">
     <div id="filterPanel" v-if="!collapsed">
-      <h2>Filter Panel</h2>
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
-        <h4 class="category-title-block">
+        <h4 class="category-title-block" :style="{'background': category.color}">
           <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white" size="1.5em">
             {{category.name}}
           </Checkbox>
@@ -23,7 +22,7 @@
       </div>
         Show game centers with {{selectedAmountFilter > 1 && selectedAmountFilter === selectedGameIds.length ? 'all' : 'at least ' + selectedAmountFilter}} of the selected games
     </div>
-    <div id="panelTab" @click="toogleCollapse">{{collapsed ? '&gt;' : '&lt;'}}</div>
+    <div id="panelTab" @click="toogleCollapse">{{collapsed ? '▶' : '◀'}}</div>
   </div>
 </template>
 
@@ -110,27 +109,31 @@ export default {
 
 #filterPanelContainer {
   position: relative;
+  box-shadow: 3px 3px 4px #bbb;
 }
 
 #panelTab {
   position: absolute;
-  right: -2em;
+  border-top-right-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
+  right: -3em;
   top: 0;
-  width: 2em;
-  height: 2em;
-  text-align:center;
+  width: 3em;
+  height: 3em;
   background-color: white;
-  padding: .5em;
+  padding-left: 1em;
+  padding-top: 0.8em;
   z-index: 1;
+  box-shadow: 3px 3px 4px #bbb;
 }
 .category-title-block {
   --category-height: 3em;
   --checkbox-height: 1.5em;
-  background: blue;
   color: white;
   height: var(--category-height);
   border-radius: calc(var(--category-height)/2);
   padding-left: calc((var(--category-height) - var(--checkbox-height))/2);
+  box-shadow: 3px 3px 4px #bbb;
   display: flex;
 }
 .category-checkbox {
@@ -140,8 +143,8 @@ export default {
   background: none;
   border: none;
   color: white;
-  height: 100%;
-  padding: 0 1.5em;
+    height: 100%;
+    padding: 0 1.5em;
 }
 ul {
   list-style-type: none;

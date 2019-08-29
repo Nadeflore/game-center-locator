@@ -2,6 +2,7 @@
     {
         "id": "music",
         "name": "音楽ゲーム",
+        "color": "#1E90FF",
         "games": [
             {
                 "name": "maimai でらっくす",
@@ -133,6 +134,7 @@
     {
         "id": "simulation",
         "name": "体感ゲーム",
+        "color": "#FF8C00",
         "games": [
             {
                 "name": "HOUSE OF THE DEAD: SCARLET DAWN",
@@ -184,6 +186,7 @@
     {
         "id": "card",
         "name": "カードゲーム",
+        "color": "#3CB371",
         "games": [
             {
                 "name": "WCCF FOOTISTA 2019",
@@ -220,6 +223,7 @@
     {
         "id": "video",
         "name": "ビデオゲーム",
+        "color": "#FF6347",
         "games": [
             {
                 "name": "ALL.Net P-ras MULTI バージョン３",
@@ -356,6 +360,7 @@
     {
         "id": "medal",
         "name": "メダルゲーム",
+        "color": "#808080",
         "games": [
             {
                 "name": "StarHorse3 SeasonVII GREAT JOURNEY",
@@ -652,6 +657,7 @@
     {
         "id": "other",
         "name": "その他",
+        "color": "#DA70D6",
         "games": [
             {
                 "name": "ALL.Net Wi-Fi",

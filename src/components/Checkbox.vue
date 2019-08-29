@@ -59,6 +59,7 @@ export default {
 .checkbox {
   appearance: none;
   margin: 0;
+  opacity: 0;
 }
 .checkbox-label {
   display: flex;
