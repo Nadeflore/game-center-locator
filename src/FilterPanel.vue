@@ -4,13 +4,16 @@
       <h2>Filter Panel</h2>
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
         <h4 class="category-title-block">
-          <Checkbox class="category-checkbox" :id="category.id" :label="category.name" :status="getCategoryCheckStatus(category)" @change="categoryStateChange(category, $event)"/>
+          <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white">
+            {{category.name}}
+          </Checkbox>
           <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
         </h4>
         <ul v-show="expandedCategoryIds.includes(category.id)">
           <li v-for="game in category.games" :key="game.id">
-            <input type="checkbox" :id="game.id" :value="game.id" v-model="selectedGameIds"/>
-            <label :for="game.id">{{game.name}}</label>
+            <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black">
+              {{game.name}}
+            </Checkbox>
           </li>
         </ul>
       </div>
@@ -42,16 +45,13 @@ export default {
     }
   },
   methods: {
-    getCategoryCheckStatus (category) {
-      const selected = category.games.filter(game => this.selectedGameIds.includes(game.id))
-
-      const allSelected = selected.length === category.games.length
-      const someSelected = selected.length !== 0
-
-      return {
-        checked: allSelected,
-        indeterminate: someSelected && !allSelected
-      }
+    getCategoryChecked (category) {
+      return category.games.every(game => this.selectedGameIds.includes(game.id))
+    },
+    getCategoryIndeterminate (category) {
+      const allSelected = this.getCategoryChecked(category)
+      const someSelected = category.games.some(game => this.selectedGameIds.includes(game.id))
+      return someSelected && !allSelected
     },
     categoryStateChange (category, event) {
       const categoryGameIds = category.games.map(game => game.id)
@@ -124,7 +124,7 @@ export default {
   z-index: 1;
 }
 .category-title-block {
-  --category-height: 50px;
+  --category-height: 3em;
   background: blue;
   color: white;
   height: var(--category-height);
@@ -138,8 +138,10 @@ export default {
   background: none;
   border: none;
   color: white;
-  margin-right: 10px;
   height: 100%;
-  padding: 10px;
+  padding: 0 2em;
+}
+ul {
+  list-style-type: none;
 }
 </style>
