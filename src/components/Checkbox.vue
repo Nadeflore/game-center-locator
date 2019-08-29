@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox-container" :style="{'--color': color}">
+  <div class="checkbox-container" :style="{'--color': color, '--checkbox-size': size}">
     <input type="checkbox" class="checkbox" :checked="isChecked" :indeterminate.prop="indeterminate" :id="id" :value="value" @change="change($event)"/>
     <label class="checkbox-label" :for="id">
       <div class="checkbox-display"/>
@@ -18,7 +18,7 @@ export default {
     prop: 'checked',
     event: 'change'
   },
-  props: ['id', 'value', 'checked', 'indeterminate', 'color'],
+  props: ['id', 'value', 'checked', 'indeterminate', 'color', 'size'],
   computed: {
     isChecked () {
       // Re-implement v-model behaviour on checkboxes
@@ -52,10 +52,8 @@ export default {
 
 <style>
 .checkbox-container {
-  --block-height: 3em;
-  --check-size: calc(var(--block-height)/5);
-  position: relative;
-  height: var(--block-height);
+  --check-size: calc(var(--checkbox-size)/2.5);
+  min-height: var(--checkbox-size);
   display: flex;
 }
 .checkbox {
@@ -63,26 +61,22 @@ export default {
   margin: 0;
 }
 .checkbox-label {
-  height: 100%;
   display: flex;
   align-items: center;
 }
 /* Outside circle representing checkbox */
 .checkbox-display {
-  --checkbox-size: calc(var(--block-height)/2);
-  --checkbox-position: calc((var(--block-height) - var(--checkbox-size))/2);
-  --checkbox-border: calc(var(--block-height)/11);
-  position: absolute;
-  top: var(--checkbox-position);
-  left: var(--checkbox-position);
+  --checkbox-border: calc(var(--checkbox-size)/5.5);
+  --check-position: calc(var(--checkbox-size)/2 - var(--checkbox-border) - var(--check-size)/2);
+  position: relative;
   height: var(--checkbox-size);
   width: var(--checkbox-size);
   border-radius: calc(var(--checkbox-size)/2);
   border: var(--checkbox-border) solid var(--color);
+  flex-shrink: 0;
 }
 /* inner circle representing checked status */
 .checkbox:checked + .checkbox-label .checkbox-display:before {
-  --check-position: calc((var(--checkbox-size) - var(--checkbox-border) * 2 - var(--check-size))/2);
   content: " ";
   background: var(--color);
   position: absolute;
@@ -96,7 +90,6 @@ export default {
 .checkbox:indeterminate + .checkbox-label .checkbox-display:before {
   content: " ";
   background: var(--color);
-  --check-position: calc((var(--checkbox-size) - var(--checkbox-border) * 2 - var(--check-size))/2);
   position: absolute;
   top: var(--check-position);
   left: var(--check-position);
@@ -106,6 +99,6 @@ export default {
   border-top-left-radius: calc(var(--check-size)/2);
 }
 .checkbox-label-display {
-  margin-left: var(--block-height);
+  margin-left: calc(var(--checkbox-size)/2);
 }
 </style>

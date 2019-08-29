@@ -4,14 +4,14 @@
       <h2>Filter Panel</h2>
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
         <h4 class="category-title-block">
-          <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white">
+          <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white" size="1.5em">
             {{category.name}}
           </Checkbox>
           <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
         </h4>
         <ul v-show="expandedCategoryIds.includes(category.id)">
           <li v-for="game in category.games" :key="game.id">
-            <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black">
+            <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black" size="1em">
               {{game.name}}
             </Checkbox>
           </li>
@@ -125,10 +125,12 @@ export default {
 }
 .category-title-block {
   --category-height: 3em;
+  --checkbox-height: 1.5em;
   background: blue;
   color: white;
   height: var(--category-height);
   border-radius: calc(var(--category-height)/2);
+  padding-left: calc((var(--category-height) - var(--checkbox-height))/2);
   display: flex;
 }
 .category-checkbox {
@@ -139,7 +141,7 @@ export default {
   border: none;
   color: white;
   height: 100%;
-  padding: 0 2em;
+  padding: 0 1.5em;
 }
 ul {
   list-style-type: none;
