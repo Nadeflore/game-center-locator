@@ -1,11 +1,13 @@
 <template>
   <div id="gameCenterPanel" v-if="gameCenter">
-    <button v-on:click="$emit('close')" class="panel-closer">X</button>
+    <button v-on:click="$emit('close')" class="panel-closer">✖</button>
     <div class="panel-content" :key="gameCenter.name">
       <h3>{{gameCenter.name}}</h3>
       <p>{{gameCenter.address}}</p>
       <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
-        <h4>{{ category.name }}</h4>
+        <h4 class="category-title-block" :style="{'background': category.color}">
+          {{ category.name }}
+        </h4>
         <ul>
           <li v-for="game in category.games" :key="game.id">{{game.name}}</li>
         </ul>
@@ -32,6 +34,7 @@ export default {
           result.push({
             id: category.id,
             name: category.name,
+            color: category.color,
             games: gamesForCategory
           })
         }
@@ -59,5 +62,19 @@ export default {
   position:absolute;
   right: 0.5em;
   top: 0.5em;
+  border: none;
+  background: none;
+  font-size: 150%;
+}
+.category-title-block {
+  --category-height: 3em;
+  --checkbox-height: 1.5em;
+  color: white;
+  height: var(--category-height);
+  border-radius: calc(var(--category-height)/2);
+  padding-left: calc(var(--category-height)/2);
+  box-shadow: 3px 3px 4px #bbb;
+  display: flex;
+  align-items: center;
 }
 </style>

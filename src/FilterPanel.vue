@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #filterPanel {
   width: 20em;
   height: 100%;
