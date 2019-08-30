@@ -1,7 +1,7 @@
 <template>
   <div id="mapPanelContainer">
-    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames" @collapse="updateMapSize"/>
-    <div id='map'>
+    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames"/>
+    <div id='map' :class="{ 'right-panel-open': selectedGameCenter}">
     </div>
     <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
   </div>
@@ -250,14 +250,6 @@ export default {
       this.filteredGameIds = filteredGameIds
       this.selectedAmountFilter = selectedAmountFilter
     },
-    updateMapSize () {
-      // When a panel is opened/closed, thus modidifing the size of the map div,
-      // Map size need to be updated
-      // This is done after everything has been redrawn
-      this.$nextTick(() => {
-        unwatchedStore.map.updateSize()
-      })
-    },
     centerMapToUserLocation () {
       const coordinates = unwatchedStore.geolocation.getPosition()
       if (!coordinates) {
@@ -283,11 +275,6 @@ export default {
     selectedGameCenter (newVal, oldVal) {
       // Update source to make selected icon bigger
       unwatchedStore.source.dispatchEvent('change')
-
-      if (newVal == null || oldVal == null) {
-        // If panel was opened or closed, update map size
-        this.updateMapSize()
-      }
     }
   },
   mounted () {
@@ -323,6 +310,7 @@ export default {
   flex: 1;
   height: 100%;
 }
+
 /* Place zoom controls on the bottom right */
 .ol-zoom {
   right: .5em;
@@ -339,5 +327,8 @@ export default {
 }
 .ol-touch .center-map {
   bottom: 9em;
+}
+.right-panel-open .ol-control {
+  right: 20.5em;
 }
 </style>

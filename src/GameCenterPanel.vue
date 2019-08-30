@@ -48,7 +48,12 @@ export default {
 
 <style scoped>
 #gameCenterPanel {
-  position: relative;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  height: 100%;
+  background: white;
+  box-shadow: -1px 1px 4px #bbb;
 }
 
 .panel-content {

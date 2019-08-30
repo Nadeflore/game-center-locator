@@ -1,6 +1,6 @@
 <template>
-  <div id="filterPanelContainer">
-    <div id="filterPanel" v-if="!collapsed">
+  <div id="filterPanelContainer" :class="{ collapsed }">
+    <div id="filterPanel">
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
         <h4 class="category-title-block" :style="{'background': category.color}">
           <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white" size="1.5em">
@@ -65,7 +65,6 @@ export default {
     },
     toogleCollapse () {
       this.collapsed = !this.collapsed
-      this.$emit('collapse', this.collapsed)
     },
     toogleCategory (id) {
       const index = this.expandedCategoryIds.indexOf(id)
@@ -101,15 +100,22 @@ export default {
 
 <style scoped>
 #filterPanel {
-  width: 20em;
   height: 100%;
   padding: 1em;
   overflow-y: auto;
 }
 
 #filterPanelContainer {
-  position: relative;
+  width: 20em;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  background: white;
   box-shadow: 3px 3px 4px #bbb;
+}
+
+#filterPanelContainer.collapsed {
+  left: -20em;
 }
 
 #panelTab {
