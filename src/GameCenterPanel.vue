@@ -1,9 +1,12 @@
 <template>
-  <div id="gameCenterPanel" v-if="gameCenter">
-    <button v-on:click="$emit('close')" class="panel-closer">✖</button>
+  <div id="game-center-panel" v-if="gameCenter">
+    <div class="panel-header">
+      <img src="img/game_logo.png" class="game-center-logo"/>
+      <button v-on:click="$emit('close')" class="panel-closer">✖</button>
+      <h3 class="name">{{gameCenter.name}}</h3>
+    </div>
     <div class="panel-content" :key="gameCenter.name">
-      <h3>{{gameCenter.name}}</h3>
-      <p>{{gameCenter.address}}</p>
+      <div class="address">{{gameCenter.address}}</div>
       <div v-for="category in gamesForGameCenterByCategory" class="category" :key="category.id">
         <h4 class="category-title-block" :style="{'background': category.color}">
           {{ category.name }}
@@ -47,30 +50,52 @@ export default {
 </script>
 
 <style scoped>
-#gameCenterPanel {
+#game-center-panel {
   position: absolute;
+  width: 20em;
   right: 0;
   z-index: 1;
   height: 100%;
   background: white;
-  box-shadow: -1px 1px 4px #bbb;
+  box-shadow: 0px 0px 5px #bbb;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background: #428df0;
+  overflow: auto;
+  color: white;
+  box-shadow: 2px 2px 3px #ddd;
+  flex-shrink: 0;
+  padding: 1em;
+}
+
+.game-center-logo {
+  align-self: center;
+}
+
+.name {
+  flex: 1;
+  margin: 0;
+}
+.panel-closer {
+  position: absolute;
+  right: 0.5em;
+  top: 0.3em;
+  padding: 0;
+  border: none;
+  color: white;
+  background: none;
+  font-size: 130%;
 }
 
 .panel-content {
-  width: 20em;
   height: 100%;
   padding: 1em;
   overflow-y: auto;
 }
 
-.panel-closer {
-  position:absolute;
-  right: 0.5em;
-  top: 0.5em;
-  border: none;
-  background: none;
-  font-size: 150%;
-}
 .category-title-block {
   --category-height: 3em;
   --checkbox-height: 1.5em;
