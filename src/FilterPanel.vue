@@ -1,6 +1,10 @@
 <template>
-  <div id="filterPanelContainer" :class="{ collapsed }">
-    <div id="filterPanel">
+  <div id="filter-panel" :class="{ collapsed }">
+    <div id="filter-panel-header">
+      <h2>絞り込み</h2>
+    </div>
+    <button id="panel-tab" @click="toogleCollapse">{{collapsed ? '▶' : '◀'}}</button>
+    <div id="filter-panel-content">
       <div v-for="category in gamesByCategory" class="category" :key="category.id">
         <h4 class="category-title-block" :style="{'background': category.color}">
           <Checkbox class="category-checkbox" :id="category.id" :value="category.id" :checked="getCategoryChecked(category)" :indeterminate="getCategoryIndeterminate(category)" @change="categoryStateChange(category, $event)" color="white" size="1.5em">
@@ -8,8 +12,8 @@
           </Checkbox>
           <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
         </h4>
-        <ul v-show="expandedCategoryIds.includes(category.id)">
-          <li v-for="game in category.games" :key="game.id">
+        <ul v-show="expandedCategoryIds.includes(category.id)" class="games-list">
+          <li v-for="game in category.games" :key="game.id" class="game-item">
             <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black" size="1em">
               {{game.name}}
             </Checkbox>
@@ -20,9 +24,10 @@
       <div class="slidecontainer">
         <input type="range" min="1" :max="selectedGameIds.length || 1" v-model.number="selectedAmountFilter" class="slider">
       </div>
-        Show game centers with {{selectedAmountFilter > 1 && selectedAmountFilter === selectedGameIds.length ? 'all' : 'at least ' + selectedAmountFilter}} of the selected games
+        <p>
+          Show game centers with {{selectedAmountFilter > 1 && selectedAmountFilter === selectedGameIds.length ? 'all' : 'at least ' + selectedAmountFilter}} of the selected games
+        </p>
     </div>
-    <div id="panelTab" @click="toogleCollapse">{{collapsed ? '▶' : '◀'}}</div>
   </div>
 </template>
 
@@ -99,26 +104,37 @@ export default {
 </script>
 
 <style scoped>
-#filterPanel {
-  height: 100%;
-  padding: 1em;
-  overflow-y: auto;
-}
-
-#filterPanelContainer {
+#filter-panel {
   width: 20em;
   position: absolute;
+  display: flex;
+  flex-direction: column;
   z-index: 1;
   height: 100%;
   background: white;
   box-shadow: 3px 3px 4px #bbb;
 }
 
-#filterPanelContainer.collapsed {
+#filter-panel.collapsed {
   left: -20em;
 }
 
-#panelTab {
+#filter-panel-header {
+  height: 3em;
+  padding-left: 2em;
+  background: #428df0;
+  color: white;
+  box-shadow: 2px 2px 3px #ddd;
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  margin: 0;
+  font-size: 140%;
+}
+
+#panel-tab {
   position: absolute;
   border-top-right-radius: 1.5em;
   border-bottom-right-radius: 1.5em;
@@ -126,12 +142,21 @@ export default {
   top: 0;
   width: 3em;
   height: 3em;
-  background-color: white;
-  padding-left: 1em;
-  padding-top: 0.8em;
+  background: #428df0;
+  color: white;
+  padding-right: 1em;
+  padding-bottom: 0.1em;
   z-index: 1;
   box-shadow: 3px 3px 4px #bbb;
 }
+
+#filter-panel-content {
+  flex: 1;
+  padding: 1em;
+  overflow-y: auto;
+}
+
+
 .category-title-block {
   --category-height: 3em;
   --checkbox-height: 1.5em;
@@ -140,19 +165,37 @@ export default {
   border-radius: calc(var(--category-height)/2);
   padding-left: calc((var(--category-height) - var(--checkbox-height))/2);
   box-shadow: 3px 3px 4px #bbb;
+  margin-top: 0;
+  margin-bottom: 1em;
   display: flex;
 }
 .category-checkbox {
   flex: 1;
 }
 .category-toogle-button {
+  color: white;
+  height: 100%;
+  padding: 0 1.5em;
+}
+ul.games-list {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+.game-item {
+  margin: 0.3em;
+}
+
+button {
   background: none;
   border: none;
-  color: white;
-    height: 100%;
-    padding: 0 1.5em;
+  font-size: 100%;
 }
-ul {
-  list-style-type: none;
+
+button::-moz-focus-inner {
+  border: 0;
+}
+button:focus {
+  outline: none;
 }
 </style>
