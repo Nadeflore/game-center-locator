@@ -156,7 +156,6 @@ h2 {
   overflow-y: auto;
 }
 
-
 .category-title-block {
   --category-height: 3em;
   --checkbox-height: 1.5em;

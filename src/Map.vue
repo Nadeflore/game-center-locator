@@ -111,14 +111,17 @@ export default {
           amount = 'm'
         }
 
+        // logo
+        const logo = gameCenter.logo || 'game'
+
         return new Style({
           image: new Icon({
             anchor: [0.5, 0.97],
-            scale: this.selectedGameCenter === gameCenter ? 1.5 : 1,
+            scale: this.selectedGameCenter === gameCenter ? 1 : 0.7,
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
             opacity: 0.90,
-            src: `img/icon_${amount}.png`
+            src: `img/marker_${logo}_${amount}.png`
           }),
           zIndex: this.selectedGameCenter === gameCenter ? 2 : undefined
         })
