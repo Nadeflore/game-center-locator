@@ -130,7 +130,8 @@ export default {
       // Create layer to hold markers
       unwatchedStore.markersLayer = new VectorLayer({
         source: unwatchedStore.source,
-        style: getIconStyle
+        style: getIconStyle,
+        zIndex: 1
       })
       unwatchedStore.map.addLayer(unwatchedStore.markersLayer)
     },
@@ -170,12 +171,20 @@ export default {
         positionFeature.setGeometry(coordinates ? new Point(coordinates) : null)
       })
 
-      const layer = new VectorLayer({
+      const positionLayer = new VectorLayer({
         source: new VectorSource({
-          features: [accuracyFeature, positionFeature]
-        })
+          features: [positionFeature],
+        }),
+        zIndex: 3
       })
-      unwatchedStore.map.addLayer(layer)
+      const accuracyLayer = new VectorLayer({
+        source: new VectorSource({
+          features: [accuracyFeature],
+        }),
+        zIndex: 0
+      })
+      unwatchedStore.map.addLayer(accuracyLayer)
+      unwatchedStore.map.addLayer(positionLayer)
     },
     /**
      * Create features from gameCenters data
