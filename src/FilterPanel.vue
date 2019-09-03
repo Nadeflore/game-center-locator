@@ -20,12 +20,12 @@
           </li>
         </ul>
       </div>
-      <h3>Amount Of selected Filter</h3>
+      <h3>ゲーム数</h3>
       <div class="slidecontainer">
-        <input type="range" min="1" :max="selectedGameIds.length || 1" v-model.number="selectedAmountFilter" class="slider">
+        <input type="range" min="1" :max="rangeMaximum" v-model.number="gameAmountFilter" class="slider">
       </div>
         <p>
-          Show game centers with {{selectedAmountFilter > 1 && selectedAmountFilter === selectedGameIds.length ? 'all' : 'at least ' + selectedAmountFilter}} of the selected games
+        Show game centers with {{(gameAmountFilter > 1 && gameAmountFilter === selectedGameIds.length ? 'all' : 'at least ' + gameAmountFilter) + (this.selectedGameIds.length > 0 ? ' of the selected' : '') + ' games'}}
         </p>
     </div>
   </div>
@@ -43,9 +43,21 @@ export default {
   data () {
     return {
       selectedGameIds: [],
-      selectedAmountFilter: 1,
+      gameAmountFilter: 1,
       collapsed: true,
       expandedCategoryIds: []
+    }
+  },
+  computed: {
+    totalGames () {
+      let total = 0
+      for (let category of this.gamesByCategory) {
+        total += category.games.length
+      }
+      return total
+    },
+    rangeMaximum () {
+      return this.selectedGameIds.length || this.totalGames
     }
   },
   methods: {
@@ -82,21 +94,19 @@ export default {
   },
   watch: {
     selectedGameIds (val, oldVal) {
-      if (val.length === 0) {
-        this.selectedAmountFilter = 1
-      } else {
-        if (this.selectedAmountFilter > val.length) {
+      if (val.length !== 0) {
+        if (this.gameAmountFilter > val.length) {
           // Make sure the value of the slider is not more than the maximum
-          this.selectedAmountFilter = val.length
-        } else if (this.selectedAmountFilter > 1 &&
-          this.selectedAmountFilter === oldVal.length) {
+          this.gameAmountFilter = val.length
+        } else if (this.gameAmountFilter > 1 &&
+          this.gameAmountFilter === oldVal.length) {
           // If the value of the slider was the maximum, keep the maximum value
-          this.selectedAmountFilter = val.length
+          this.gameAmountFilter = val.length
         }
       }
-      this.$emit('change', val, this.selectedAmountFilter)
+      this.$emit('change', val, this.gameAmountFilter)
     },
-    selectedAmountFilter (val) {
+    gameAmountFilter (val) {
       this.$emit('change', this.selectedGameIds, val)
     }
   }
@@ -112,7 +122,7 @@ export default {
   z-index: 1;
   height: 100%;
   background: white;
-  box-shadow: 3px 3px 4px #bbb;
+  box-shadow: 3px 3px 4px #0003;
 }
 
 #filter-panel.collapsed {
@@ -124,7 +134,7 @@ export default {
   padding-left: 2em;
   background: #428df0;
   color: white;
-  box-shadow: 2px 2px 3px #ddd;
+  box-shadow: 2px 2px 3px #0005;
   display: flex;
   align-items: center;
 }
@@ -147,7 +157,7 @@ h2 {
   padding-right: 1em;
   padding-bottom: 0.1em;
   z-index: 1;
-  box-shadow: 3px 3px 4px #bbb;
+  box-shadow: 3px 3px 4px #0005;
 }
 
 #filter-panel-content {
@@ -160,6 +170,7 @@ h2 {
   --category-height: 3em;
   --checkbox-height: 1.5em;
   color: white;
+  background: black;
   height: var(--category-height);
   border-radius: calc(var(--category-height)/2);
   padding-left: calc((var(--category-height) - var(--checkbox-height))/2);
@@ -196,5 +207,31 @@ button::-moz-focus-inner {
 }
 button:focus {
   outline: none;
+}
+
+/* Slider style */
+.slider {
+  --slider-height: 1em;
+  width: 100%;
+  height: var(--slider-height);
+  border-radius: calc(var(--slider-height)/2);
+  appearance: none;
+  background: #d3d3d3;
+}
+.slider::-moz-range-thumb {
+  width: calc(2*var(--slider-height));
+  height: calc(2*var(--slider-height));
+  border-radius: var(--slider-height);
+  border: none;
+  appearance: none;
+  background: #48f;
+}
+.slider::-webkit-slider-thumb {
+  width: calc(2*var(--slider-height));
+  height: calc(2*var(--slider-height));
+  border-radius: var(--slider-height);
+  border: none;
+  appearance: none;
+  background: #48f;
 }
 </style>

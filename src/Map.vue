@@ -42,7 +42,7 @@ export default {
     return {
       selectedGameCenter: null,
       filteredGameIds: [],
-      selectedAmountFilter: 1
+      gameAmountFilter: 1
     }
   },
   methods: {
@@ -196,17 +196,16 @@ export default {
      */
     updateMarkers () {
       // Filter game centers
-      let featuresFiltered
-      if (this.filteredGameIds.length === 0) {
-        // when no game selected display all
-        featuresFiltered = unwatchedStore.features
-      } else {
-        // Only keep game centers with a least `selectedAmountFilter` of the selected games
-        featuresFiltered = unwatchedStore.features.filter(feature => {
-          const gameCenter = feature.get('gameCenter')
-          return this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length >= this.selectedAmountFilter
-        })
-      }
+      const featuresFiltered = unwatchedStore.features.filter(feature => {
+        const gameCenter = feature.get('gameCenter')
+        if (this.filteredGameIds.length > 0) {
+          // Only keep game centers with a least `gameAmountFilter` of the selected games
+          return this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length >= this.gameAmountFilter
+        } else {
+          // Only keep game centers with at least `gameAmountFilter` of games
+          return gameCenter.gameIds.length >= this.gameAmountFilter
+        }
+      })
 
       // clear existing markers
       unwatchedStore.source.clear()
@@ -249,9 +248,9 @@ export default {
         unwatchedStore.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
       })
     },
-    updateFilteredGames (filteredGameIds, selectedAmountFilter) {
+    updateFilteredGames (filteredGameIds, gameAmountFilter) {
       this.filteredGameIds = filteredGameIds
-      this.selectedAmountFilter = selectedAmountFilter
+      this.gameAmountFilter = gameAmountFilter
     },
     centerMapToUserLocation () {
       const coordinates = unwatchedStore.geolocation.getPosition()
@@ -271,7 +270,7 @@ export default {
       // Update markers if filter changed
       this.updateMarkers()
     },
-    selectedAmountFilter () {
+    gameAmountFilter () {
       // Update markers if filter amount ratio changed
       this.updateMarkers()
     },
