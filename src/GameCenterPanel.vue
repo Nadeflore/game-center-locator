@@ -12,7 +12,9 @@
           {{ category.name }}
         </h4>
         <ul>
-          <li v-for="game in category.games" :key="game.id">{{game.name}}</li>
+          <li v-for="game in category.games" :key="game.id">
+            <Checkbox :id="'disp_' + game.id" color="black" size="1em">{{game.name}}</Checkbox>
+          </li>
         </ul>
       </div>
     </div>
@@ -20,10 +22,13 @@
 </template>
 
 <script>
+import Checkbox from './components/Checkbox.vue'
 
 export default {
   name: 'gameCenterPanel',
-  components: {},
+  components: {
+    Checkbox
+  },
   props: ['gameCenter', 'gamesByCategory'],
   computed: {
     gamesForGameCenterByCategory () {
@@ -106,5 +111,14 @@ export default {
   box-shadow: 3px 3px 4px #bbb;
   display: flex;
   align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+li {
+  margin: 0.3em;
 }
 </style>

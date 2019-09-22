@@ -5,129 +5,129 @@
         "color": "#1E90FF",
         "games": [
             {
-                "name": "maimai でらっくす",
-                "provider": "sega",
-                "id": "sega_96"
-            },
-            {
-                "name": "WACCA",
-                "provider": "sega",
-                "id": "sega_93"
-            },
-            {
-                "name": "maimai FiNALE",
-                "provider": "sega",
-                "id": "sega_90"
-            },
-            {
-                "name": "オンゲキ",
-                "provider": "sega",
-                "id": "sega_88"
-            },
-            {
-                "name": "Pump It Up シリーズ",
-                "provider": "sega",
-                "id": "sega_69"
-            },
-            {
                 "name": "CHUNITHM",
-                "provider": "sega",
-                "id": "sega_58"
-            },
-            {
-                "name": "初音ミク Project DIVA Arcade Future Tone",
-                "provider": "sega",
-                "id": "sega_34"
-            },
-            {
-                "name": "DanceDanceRevolution",
-                "provider": "konami",
-                "id": "konami_DDR"
-            },
-            {
-                "name": "DanceDanceRevolution 20th anniversary model",
-                "provider": "konami",
-                "id": "konami_DDR20TH"
-            },
-            {
-                "name": "beatmania IIDX",
-                "provider": "konami",
-                "id": "konami_IIDX"
-            },
-            {
-                "name": "jubeat",
-                "provider": "konami",
-                "id": "konami_JUBEAT"
+                "id": "sega_58",
+                "provider": "sega"
             },
             {
                 "name": "DANCERUSH STARDOM",
-                "provider": "konami",
-                "id": "konami_DAN"
+                "id": "konami_DAN",
+                "provider": "konami"
             },
             {
-                "name": "GITADORA DrumMania",
-                "provider": "konami",
-                "id": "konami_GITADORADM"
+                "name": "DanceDanceRevolution",
+                "id": "konami_DDR",
+                "provider": "konami"
             },
             {
-                "name": "GITADORA GuitarFreaks",
-                "provider": "konami",
-                "id": "konami_GITADORAGF"
-            },
-            {
-                "name": "ノスタルジア",
-                "provider": "konami",
-                "id": "konami_NOSTALGIA"
-            },
-            {
-                "name": "SOUND VOLTEX",
-                "provider": "konami",
-                "id": "konami_SDVX"
-            },
-            {
-                "name": "pop'n music",
-                "provider": "konami",
-                "id": "konami_PMSP"
-            },
-            {
-                "name": "REFLEC BEAT",
-                "provider": "konami",
-                "id": "konami_REFLECC"
-            },
-            {
-                "name": "MUSECA",
-                "provider": "konami",
-                "id": "konami_MUSECA"
+                "name": "DanceDanceRevolution 20th anniversary model",
+                "id": "konami_DDR20TH",
+                "provider": "konami"
             },
             {
                 "name": "DanceEvolution ARCADE",
-                "provider": "konami",
-                "id": "konami_DANEVOAC"
+                "id": "konami_DANEVOAC",
+                "provider": "konami"
             },
             {
-                "name": "太鼓の達人",
-                "provider": "namco",
-                "id": "namco_taiko"
+                "name": "GITADORA DrumMania",
+                "id": "konami_GITADORADM",
+                "provider": "konami"
             },
             {
-                "name": "シンクロニカ",
-                "provider": "namco",
-                "id": "namco_synchronica"
+                "name": "GITADORA GuitarFreaks",
+                "id": "konami_GITADORAGF",
+                "provider": "konami"
             },
             {
+                "name": "MUSECA",
+                "id": "konami_MUSECA",
+                "provider": "konami"
+            },
+            {
+                "name": "Pump It Up シリーズ",
+                "id": "sega_69",
+                "provider": "sega"
+            },
+            {
+                "name": "REFLEC BEAT",
+                "id": "konami_REFLECC",
+                "provider": "konami"
+            },
+            {
+                "name": "SOUND VOLTEX",
+                "id": "konami_SDVX",
+                "provider": "konami"
+            },
+            {
+                "name": "WACCA",
+                "id": "sega_93",
+                "provider": "sega"
+            },
+            {
+                "name": "beatmania IIDX",
+                "id": "konami_IIDX",
+                "provider": "konami"
+            },
+            {
+                "name": "jubeat",
+                "id": "konami_JUBEAT",
+                "provider": "konami"
+            },
+            {
+                "name": "maimai FiNALE",
+                "id": "sega_90",
+                "provider": "sega"
+            },
+            {
+                "name": "maimai でらっくす",
+                "id": "sega_96",
+                "provider": "sega"
+            },
+            {
+                "name": "pop'n music",
+                "id": "konami_PMSP",
+                "provider": "konami"
+            },
+            {
+                "name": "オンゲキ",
+                "id": "sega_88",
+                "provider": "sega"
+            },
+            {
+                "id": "taito_groovecoaster",
                 "name": "グル―ヴコースター",
-                "provider": "taito",
-                "id": "taito_groovecoaster"
+                "provider": "taito"
             },
             {
-                "name": "ラブライブ！SIFAC NextStage",
-                "provider": "taito",
-                "id": "taito_lovelive-sifacns"
-            },
-            {
+                "id": "taito_t_ffac",
                 "name": "シアトリズム FF オールスターカーニバル",
-                "provider": "taito",
-                "id": "taito_t_ffac"
+                "provider": "taito"
+            },
+            {
+                "id": "namco_synchronica",
+                "name": "シンクロニカ",
+                "provider": "namco"
+            },
+            {
+                "name": "ノスタルジア",
+                "id": "konami_NOSTALGIA",
+                "provider": "konami"
+            },
+            {
+                "id": "taito_lovelive-sifacns",
+                "name": "ラブライブ！SIFAC NextStage",
+                "provider": "taito"
+            },
+            {
+                "name": "初音ミク Project DIVA Arcade Future Tone",
+                "id": "sega_34",
+                "provider": "sega"
+            },
+            {
+                "id": "namco_taiko",
+                "name": "太鼓の達人",
+                "provider": "namco"
             }
         ]
     },
@@ -138,48 +138,58 @@
         "games": [
             {
                 "name": "HOUSE OF THE DEAD: SCARLET DAWN",
-                "provider": "sega",
-                "id": "sega_87"
+                "id": "sega_87",
+                "provider": "sega"
             },
             {
                 "name": "SEGA World Drivers Championship",
-                "provider": "sega",
-                "id": "sega_82"
-            },
-            {
-                "name": "頭文字D ARCADE STAGE Zero",
-                "provider": "sega",
-                "id": "sega_78"
-            },
-            {
-                "name": "マリオ＆ソニック AT リオオリンピック™ アーケードゲーム",
-                "provider": "sega",
-                "id": "sega_72"
-            },
-            {
-                "name": "頭文字D ARCADE STAGE 8 インフィニティ",
-                "provider": "sega",
-                "id": "sega_35"
-            },
-            {
-                "name": "ビシバシチャンネル",
-                "provider": "konami",
-                "id": "konami_BBCH"
+                "id": "sega_82",
+                "provider": "sega"
             },
             {
                 "name": "ザ★ビシバシ",
-                "provider": "konami",
-                "id": "konami_TBB"
+                "id": "konami_TBB",
+                "provider": "konami"
             },
             {
+                "name": "ビシバシチャンネル",
+                "id": "konami_BBCH",
+                "provider": "konami"
+            },
+            {
+                "id": "namco_mariokart-acgpdx",
+                "name": "マリオカート アーケードグランプリ デラックス",
+                "provider": "namco"
+            },
+            {
+                "name": "マリオ＆ソニック AT リオオリンピック™ アーケードゲーム",
+                "id": "sega_72",
+                "provider": "sega"
+            },
+            {
+                "id": "namco_lostland",
                 "name": "ロストランドアドベンチャー",
-                "provider": "namco",
-                "id": "namco_lostland"
+                "provider": "namco"
             },
             {
+                "id": "namco_wanganmaxi6",
                 "name": "湾岸ミッドナイト マキシマムチューン 6",
-                "provider": "namco",
-                "id": "namco_wanganmaxi6"
+                "provider": "namco"
+            },
+            {
+                "id": "taito_denshadego",
+                "name": "電車でＧＯ！！",
+                "provider": "taito"
+            },
+            {
+                "name": "頭文字D ARCADE STAGE 8 インフィニティ",
+                "id": "sega_35",
+                "provider": "sega"
+            },
+            {
+                "name": "頭文字D ARCADE STAGE Zero",
+                "id": "sega_78",
+                "provider": "sega"
             }
         ]
     },
@@ -189,34 +199,34 @@
         "color": "#3CB371",
         "games": [
             {
-                "name": "WCCF FOOTISTA 2019",
-                "provider": "sega",
-                "id": "sega_91"
+                "name": "BASEBALL COLLECTION",
+                "id": "konami_BBC",
+                "provider": "konami"
             },
             {
                 "name": "Fate / Grand Order Arcade",
-                "provider": "sega",
-                "id": "sega_89"
+                "id": "sega_89",
+                "provider": "sega"
             },
             {
-                "name": "クロノレガリア",
-                "provider": "sega",
-                "id": "sega_85"
+                "name": "WCCF FOOTISTA 2019",
+                "id": "sega_91",
+                "provider": "sega"
             },
             {
                 "name": "WORLD CLUB Champion Football 2017-2018",
-                "provider": "sega",
-                "id": "sega_83"
+                "id": "sega_83",
+                "provider": "sega"
+            },
+            {
+                "name": "クロノレガリア",
+                "id": "sega_85",
+                "provider": "sega"
             },
             {
                 "name": "三国志大戦",
-                "provider": "sega",
-                "id": "sega_76"
-            },
-            {
-                "name": "BASEBALL COLLECTION",
-                "provider": "konami",
-                "id": "konami_BBC"
+                "id": "sega_76",
+                "provider": "sega"
             }
         ]
     },
@@ -226,134 +236,139 @@
         "color": "#FF6347",
         "games": [
             {
-                "name": "ALL.Net P-ras MULTI バージョン３",
-                "provider": "sega",
-                "id": "sega_92"
-            },
-            {
-                "name": "Wonderland Wars",
-                "provider": "sega",
-                "id": "sega_43"
-            },
-            {
-                "name": "セガNET麻雀 MJ Arcade",
-                "provider": "sega",
-                "id": "sega_29"
-            },
-            {
                 "name": "ALL.Net P-ras MULTI",
-                "provider": "sega",
-                "id": "sega_24"
+                "id": "sega_24",
+                "provider": "sega"
+            },
+            {
+                "name": "ALL.Net P-ras MULTI バージョン３",
+                "id": "sega_92",
+                "provider": "sega"
             },
             {
                 "name": "BORDER BREAK",
-                "provider": "sega",
-                "id": "sega_6"
+                "id": "sega_6",
+                "provider": "sega"
             },
             {
-                "name": "麻雀格闘倶楽部",
-                "provider": "konami",
-                "id": "konami_MFCU"
+                "id": "taito_nxl",
+                "name": "NESiCAxLive",
+                "provider": "taito"
             },
             {
-                "name": "麻雀格闘倶楽部(ﾊｲｸﾞﾚｰﾄﾞﾓﾃﾞﾙ)",
-                "provider": "konami",
-                "id": "konami_MFCU_HG"
-            },
-            {
-                "name": "麻雀格闘倶楽部(ｽﾀﾝﾀﾞｰﾄﾞﾓﾃﾞﾙ)",
-                "provider": "konami",
-                "id": "konami_MFCU_STD"
-            },
-            {
-                "name": "麻雀格闘倶楽部(ﾆｭｰｷｬﾋﾞﾈｯﾄ機能搭載ﾓﾃﾞﾙ)",
-                "provider": "konami",
-                "id": "konami_MFCU_NEW"
-            },
-            {
-                "name": "ボンバーガール",
-                "provider": "konami",
-                "id": "konami_BOMBERGIRL"
-            },
-            {
-                "name": "クイズマジックアカデミー",
-                "provider": "konami",
-                "id": "konami_QMA9"
-            },
-            {
-                "name": "Winning Eleven AC 2014",
-                "provider": "konami",
-                "id": "konami_WEAC2014ALL"
-            },
-            {
-                "name": "Winning Eleven AC 2014(新筺体)",
-                "provider": "konami",
-                "id": "konami_WEAC2014WIDE"
-            },
-            {
-                "name": "Winning Eleven AC 2014(ｽﾀﾝﾀﾞｰﾄﾞ筺体)",
-                "provider": "konami",
-                "id": "konami_WEAC2014STD"
+                "id": "taito_nxl2",
+                "name": "NESiCAxLive2",
+                "provider": "taito"
             },
             {
                 "name": "Steel Chronicle VICTROOPERS",
-                "provider": "konami",
-                "id": "konami_SC1"
+                "id": "konami_SC1",
+                "provider": "konami"
+            },
+            {
+                "name": "Winning Eleven AC 2014",
+                "id": "konami_WEAC2014ALL",
+                "provider": "konami"
+            },
+            {
+                "name": "Winning Eleven AC 2014(新筺体)",
+                "id": "konami_WEAC2014WIDE",
+                "provider": "konami"
+            },
+            {
+                "name": "Winning Eleven AC 2014(ｽﾀﾝﾀﾞｰﾄﾞ筺体)",
+                "id": "konami_WEAC2014STD",
+                "provider": "konami"
+            },
+            {
+                "name": "Wonderland Wars",
+                "id": "sega_43",
+                "provider": "sega"
+            },
+            {
+                "id": "taito_gunslinger-stratos",
+                "name": "ガンスリンガー ストラトス",
+                "provider": "taito"
+            },
+            {
+                "name": "クイズマジックアカデミー",
+                "id": "konami_QMA9",
+                "provider": "konami"
+            },
+            {
+                "name": "セガNET麻雀 MJ Arcade",
+                "id": "sega_29",
+                "provider": "sega"
+            },
+            {
+                "id": "namco_saoac",
+                "name": "ソードアート・オンライン アーケード",
+                "provider": "namco"
+            },
+            {
+                "id": "taito_dff",
+                "name": "ディシディア ファイナルファンタジー",
+                "provider": "taito"
+            },
+            {
+                "id": "namco_db-zenkai",
+                "name": "ドラゴンボール ゼンカイバトル",
+                "provider": "namco"
+            },
+            {
+                "name": "ボンバーガール",
+                "id": "konami_BOMBERGIRL",
+                "provider": "konami"
             },
             {
                 "name": "天下一将棋会2",
-                "provider": "konami",
-                "id": "konami_SHOGI2"
+                "id": "konami_SHOGI2",
+                "provider": "konami"
             },
             {
-                "name": "ドラゴンボール ゼンカイバトル",
-                "provider": "namco",
-                "id": "namco_db-zenkai"
+                "id": "taito_starwing",
+                "name": "星と翼のパラドクス",
+                "provider": "taito"
             },
             {
+                "id": "namco_gundam-vs-extreme-acmb-on",
                 "name": "機動戦士ガンダム エクストリームバーサス マキシブースト ON",
-                "provider": "namco",
-                "id": "namco_gundam-vs-extreme-acmb-on"
+                "provider": "namco"
+            },
+            {
+                "id": "namco_gundam-vs-extreme-ac2",
+                "name": "機動戦士ガンダム エクストリームバーサス2",
+                "provider": "namco"
             },
             {
                 "name": "機動戦士ガンダム 戦場の絆",
-                "provider": "namco",
-                "id": "namco_gundam-kizuna"
+                "id": "namco_gundam-kizuna",
+                "provider": "namco"
             },
             {
-                "name": "機動戦士ガンダム エクストリームバーサス2",
-                "provider": "namco",
-                "id": "namco_gundam-vs-extreme-ac2"
-            },
-            {
-                "name": "ソードアート・オンライン アーケード",
-                "provider": "namco",
-                "id": "namco_saoac"
-            },
-            {
+                "id": "namco_tk7fr-r2",
                 "name": "鉄拳7 FATED RETRIBUTION ROUND 2",
-                "provider": "namco",
-                "id": "namco_tk7fr-r2"
+                "provider": "namco"
             },
             {
-                "name": "NESiCAxLive",
-                "provider": "taito",
-                "id": "taito_nxl"
+                "name": "麻雀格闘倶楽部",
+                "id": "konami_MFCU",
+                "provider": "konami"
             },
             {
-                "name": "NESiCAxLive2",
-                "provider": "taito",
-                "id": "taito_nxl2"
+                "name": "麻雀格闘倶楽部(ｽﾀﾝﾀﾞｰﾄﾞﾓﾃﾞﾙ)",
+                "id": "konami_MFCU_STD",
+                "provider": "konami"
             },
             {
-                "name": "星と翼のパラドクス",
-                "provider": "taito",
-                "id": "taito_starwing"
+                "name": "麻雀格闘倶楽部(ﾆｭｰｷｬﾋﾞﾈｯﾄ機能搭載ﾓﾃﾞﾙ)",
+                "id": "konami_MFCU_NEW",
+                "provider": "konami"
             },
             {
-                "name": "ディシディア ファイナルファンタジー",
-                "provider": "taito",
-                "id": "taito_dff"
+                "name": "麻雀格闘倶楽部(ﾊｲｸﾞﾚｰﾄﾞﾓﾃﾞﾙ)",
+                "id": "konami_MFCU_HG",
+                "provider": "konami"
             }
         ]
     },
@@ -363,294 +378,346 @@
         "color": "#808080",
         "games": [
             {
-                "name": "StarHorse3 SeasonVII GREAT JOURNEY",
-                "provider": "sega",
-                "id": "sega_86"
-            },
-            {
-                "name": "StarHorse3 SeasonVI FULL THROTTLE",
-                "provider": "sega",
-                "id": "sega_80"
-            },
-            {
-                "name": "StarHorse3 SeasonIV DREAM ON THE TURF",
-                "provider": "sega",
-                "id": "sega_65"
-            },
-            {
-                "name": "That's PARADiCE",
-                "provider": "sega",
-                "id": "sega_8"
-            },
-            {
-                "name": "アニマロッタ アニマと雲の大樹",
-                "provider": "konami",
-                "id": "konami_ANIMAL5"
-            },
-            {
-                "name": "GRANDCROSS LEGEND",
-                "provider": "konami",
-                "id": "konami_GRANDCROSS_LEGEND"
-            },
-            {
-                "name": "ボンバーマン・ザ・メダル",
-                "provider": "konami",
-                "id": "konami_BOMBER_MEDAL"
-            },
-            {
-                "name": "カラコロッタ 太陽とひみつの島",
-                "provider": "konami",
-                "id": "konami_COLORCOLOTTA3"
-            },
-            {
-                "name": "ツナガロッタ アニマと虹色の秘境",
-                "provider": "konami",
-                "id": "konami_TSUNAGALOTTA2"
-            },
-            {
-                "name": "マーブルフィーバー",
-                "provider": "konami",
-                "id": "konami_MARBLEFEVER"
-            },
-            {
-                "name": "GI-WorldClassic",
-                "provider": "konami",
-                "id": "konami_GIWorldClassic"
-            },
-            {
-                "name": "GI-WorldClassic(GDタイプ)",
-                "provider": "konami",
-                "id": "konami_GIWorldClassic_GD"
-            },
-            {
-                "name": "GI-WorldClassic(GD_Sタイプ)",
-                "provider": "konami",
-                "id": "konami_GIWorldClassic_GD_S"
-            },
-            {
-                "name": "GI-WorldClassic(DXタイプ)",
-                "provider": "konami",
-                "id": "konami_GIWorldClassic_VR_DX"
-            },
-            {
-                "name": "GI-WorldClassic(STDタイプ)",
-                "provider": "konami",
-                "id": "konami_GIWorldClassic_VR_SD"
+                "name": "DreamSphere GRANDCROSS",
+                "id": "konami_dreamsphere",
+                "provider": "konami"
             },
             {
                 "name": "FEATURE Premium シリーズ",
-                "provider": "konami",
-                "id": "konami_FEATUREPREMIUM"
-            },
-            {
-                "name": "おとぎの国のアニマ",
-                "provider": "konami",
-                "id": "konami_ANIMAL4"
-            },
-            {
-                "name": "マジカルシューター",
-                "provider": "konami",
-                "id": "konami_MS"
-            },
-            {
-                "name": "トレジャーシュート",
-                "provider": "konami",
-                "id": "konami_TS1"
-            },
-            {
-                "name": "エルドラクラウン",
-                "provider": "konami",
-                "id": "konami_EKEC"
-            },
-            {
-                "name": "フォーチュントリニティ3",
-                "provider": "konami",
-                "id": "konami_FTRI3"
-            },
-            {
-                "name": "カラコロッタ2",
-                "provider": "konami",
-                "id": "konami_COLORCOLOTTA2"
-            },
-            {
-                "name": "ツナガロッタ",
-                "provider": "konami",
-                "id": "konami_TSUNAGALOTTA"
-            },
-            {
-                "name": "GI-VICTORY ROAD",
-                "provider": "konami",
-                "id": "konami_GIVROAD"
-            },
-            {
-                "name": "GI-VICTORY ROAD(DXタイプ)",
-                "provider": "konami",
-                "id": "konami_GIVROAD_DX"
-            },
-            {
-                "name": "GI-VICTORY ROAD(STDタイプ)",
-                "provider": "konami",
-                "id": "konami_GIVROAD_STD"
-            },
-            {
-                "name": "祭deフィーバー!!",
-                "provider": "konami",
-                "id": "konami_MATSURI"
-            },
-            {
-                "name": "ShadowPrincess",
-                "provider": "konami",
-                "id": "konami_SHADOWPRINCESS"
-            },
-            {
-                "name": "エターナルナイツBRAVE",
-                "provider": "konami",
-                "id": "konami_EKBRAVE"
-            },
-            {
-                "name": "カラコロッタ",
-                "provider": "konami",
-                "id": "konami_COLORCOLOTTA"
-            },
-            {
-                "name": "オレカバトル パンドラのメダル",
-                "provider": "konami",
-                "id": "konami_ORECA_PANDORA"
-            },
-            {
-                "name": "ご当地あラウンド",
-                "provider": "konami",
-                "id": "konami_GOTOCHI_AROUND"
-            },
-            {
-                "name": "DreamSphere GRANDCROSS",
-                "provider": "konami",
-                "id": "konami_dreamsphere"
-            },
-            {
-                "name": "アニマロッタ2",
-                "provider": "konami",
-                "id": "konami_ANIMAL2"
-            },
-            {
-                "name": "GI-GranDesire",
-                "provider": "konami",
-                "id": "konami_GIGD"
-            },
-            {
-                "name": "フォーチュントリニティ2",
-                "provider": "konami",
-                "id": "konami_FTRI2"
-            },
-            {
-                "name": "SPINFEVER 夢幻のオーケストラ",
-                "provider": "konami",
-                "id": "konami_SPINFEVER3"
-            },
-            {
-                "name": "ＭＥＴＥＯＳＰＡＲＫ",
-                "provider": "konami",
-                "id": "konami_METEOSPARK"
-            },
-            {
-                "name": "WONDERMARCH",
-                "provider": "konami",
-                "id": "konami_WONDERMARCH"
-            },
-            {
-                "name": "Venus Fountain",
-                "provider": "konami",
-                "id": "konami_VENUSFOUNTAIN"
-            },
-            {
-                "name": "GI-HORSEPARK JUDGMENT",
-                "provider": "konami",
-                "id": "konami_GIHPJM"
-            },
-            {
-                "name": "GI-HORSEPARK JUDGMENT STD",
-                "provider": "konami",
-                "id": "konami_GIHPJM_STD"
-            },
-            {
-                "name": "アニマロッタ",
-                "provider": "konami",
-                "id": "konami_ANIMAL"
-            },
-            {
-                "name": "グランドクロス クロニクル",
-                "provider": "konami",
-                "id": "konami_GCC"
-            },
-            {
-                "name": "GI-Turf TV",
-                "provider": "konami",
-                "id": "konami_GITTV"
-            },
-            {
-                "name": "フォーチュントリニティ",
-                "provider": "konami",
-                "id": "konami_FTRI"
-            },
-            {
-                "name": "Infinity Rings",
-                "provider": "konami",
-                "id": "konami_IRINGS"
-            },
-            {
-                "name": "MILLIONET",
-                "provider": "konami",
-                "id": "konami_MILLIONET"
-            },
-            {
-                "name": "悪魔城ドラキュラ THE MEDAL",
-                "provider": "konami",
-                "id": "konami_CVM"
+                "id": "konami_FEATUREPREMIUM",
+                "provider": "konami"
             },
             {
                 "name": "FantasicFever3 Twinkle Fairytale",
-                "provider": "konami",
-                "id": "konami_FF3"
+                "id": "konami_FF3",
+                "provider": "konami"
             },
             {
-                "name": "トゥインクルドロップ",
-                "provider": "konami",
-                "id": "konami_TD"
-            },
-            {
-                "name": "PanicPirates",
-                "provider": "konami",
-                "id": "konami_PANIC"
-            },
-            {
-                "name": "GI-TURF WILD3",
-                "provider": "konami",
-                "id": "konami_GITW3"
-            },
-            {
-                "name": "回せ！ギアドライヴ",
-                "provider": "konami",
-                "id": "konami_GEAR_DRIVE"
+                "name": "GI-GranDesire",
+                "id": "konami_GIGD",
+                "provider": "konami"
             },
             {
                 "name": "GI-HORSEPARK GX",
-                "provider": "konami",
-                "id": "konami_GIHPGX"
+                "id": "konami_GIHPGX",
+                "provider": "konami"
             },
             {
                 "name": "GI-HORSEPARK GX STD",
-                "provider": "konami",
-                "id": "konami_GIHPGX_STD"
+                "id": "konami_GIHPGX_STD",
+                "provider": "konami"
             },
             {
-                "name": "SPIN FEVER2",
-                "provider": "konami",
-                "id": "konami_SPINFEVER2"
+                "name": "GI-HORSEPARK JUDGMENT",
+                "id": "konami_GIHPJM",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-HORSEPARK JUDGMENT STD",
+                "id": "konami_GIHPJM_STD",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-TURF WILD3",
+                "id": "konami_GITW3",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-Turf TV",
+                "id": "konami_GITTV",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-VICTORY ROAD",
+                "id": "konami_GIVROAD",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-VICTORY ROAD(DXタイプ)",
+                "id": "konami_GIVROAD_DX",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-VICTORY ROAD(STDタイプ)",
+                "id": "konami_GIVROAD_STD",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-WorldClassic",
+                "id": "konami_GIWorldClassic",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-WorldClassic(DXタイプ)",
+                "id": "konami_GIWorldClassic_VR_DX",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-WorldClassic(GD_Sタイプ)",
+                "id": "konami_GIWorldClassic_GD_S",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-WorldClassic(GDタイプ)",
+                "id": "konami_GIWorldClassic_GD",
+                "provider": "konami"
+            },
+            {
+                "name": "GI-WorldClassic(STDタイプ)",
+                "id": "konami_GIWorldClassic_VR_SD",
+                "provider": "konami"
+            },
+            {
+                "name": "GRANDCROSS LEGEND",
+                "id": "konami_GRANDCROSS_LEGEND",
+                "provider": "konami"
             },
             {
                 "name": "GRANDCROSS PREMIUM",
-                "provider": "konami",
-                "id": "konami_GCP"
+                "id": "konami_GCP",
+                "provider": "konami"
+            },
+            {
+                "name": "Infinity Rings",
+                "id": "konami_IRINGS",
+                "provider": "konami"
+            },
+            {
+                "name": "MILLIONET",
+                "id": "konami_MILLIONET",
+                "provider": "konami"
+            },
+            {
+                "name": "PanicPirates",
+                "id": "konami_PANIC",
+                "provider": "konami"
+            },
+            {
+                "name": "SPIN FEVER2",
+                "id": "konami_SPINFEVER2",
+                "provider": "konami"
+            },
+            {
+                "name": "SPINFEVER 夢幻のオーケストラ",
+                "id": "konami_SPINFEVER3",
+                "provider": "konami"
+            },
+            {
+                "name": "ShadowPrincess",
+                "id": "konami_SHADOWPRINCESS",
+                "provider": "konami"
+            },
+            {
+                "name": "StarHorse3 SeasonIV DREAM ON THE TURF",
+                "id": "sega_65",
+                "provider": "sega"
+            },
+            {
+                "name": "StarHorse3 SeasonVI FULL THROTTLE",
+                "id": "sega_80",
+                "provider": "sega"
+            },
+            {
+                "name": "StarHorse3 SeasonVII GREAT JOURNEY",
+                "id": "sega_86",
+                "provider": "sega"
+            },
+            {
+                "name": "That's PARADiCE",
+                "id": "sega_8",
+                "provider": "sega"
+            },
+            {
+                "name": "Venus Fountain",
+                "id": "konami_VENUSFOUNTAIN",
+                "provider": "konami"
+            },
+            {
+                "name": "WONDERMARCH",
+                "id": "konami_WONDERMARCH",
+                "provider": "konami"
+            },
+            {
+                "name": "おとぎの国のアニマ",
+                "id": "konami_ANIMAL4",
+                "provider": "konami"
+            },
+            {
+                "name": "ご当地あラウンド",
+                "id": "konami_GOTOCHI_AROUND",
+                "provider": "konami"
+            },
+            {
+                "name": "アニマロッタ",
+                "id": "konami_ANIMAL",
+                "provider": "konami"
+            },
+            {
+                "name": "アニマロッタ アニマと雲の大樹",
+                "id": "konami_ANIMAL5",
+                "provider": "konami"
+            },
+            {
+                "name": "アニマロッタ2",
+                "id": "konami_ANIMAL2",
+                "provider": "konami"
+            },
+            {
+                "name": "アニマロッタ3",
+                "id": "konami_ANIMAL3",
+                "provider": "konami"
+            },
+            {
+                "name": "エターナルナイツBRAVE",
+                "id": "konami_EKBRAVE",
+                "provider": "konami"
+            },
+            {
+                "name": "エルドラクラウン",
+                "id": "konami_EKEC",
+                "provider": "konami"
+            },
+            {
+                "name": "オレカバトル パンドラのメダル",
+                "id": "konami_ORECA_PANDORA",
+                "provider": "konami"
+            },
+            {
+                "name": "カラコロッタ",
+                "id": "konami_COLORCOLOTTA",
+                "provider": "konami"
+            },
+            {
+                "name": "カラコロッタ 太陽とひみつの島",
+                "id": "konami_COLORCOLOTTA3",
+                "provider": "konami"
+            },
+            {
+                "name": "カラコロッタ2",
+                "id": "konami_COLORCOLOTTA2",
+                "provider": "konami"
+            },
+            {
+                "name": "グランドクロス クロニクル",
+                "id": "konami_GCC",
+                "provider": "konami"
+            },
+            {
+                "name": "ツナガロッタ",
+                "id": "konami_TSUNAGALOTTA",
+                "provider": "konami"
+            },
+            {
+                "name": "ツナガロッタ アニマと虹色の秘境",
+                "id": "konami_TSUNAGALOTTA2",
+                "provider": "konami"
+            },
+            {
+                "name": "トゥインクルドロップ",
+                "id": "konami_TD",
+                "provider": "konami"
+            },
+            {
+                "name": "トレジャーシュート",
+                "id": "konami_TS1",
+                "provider": "konami"
+            },
+            {
+                "name": "フォーチュントリニティ",
+                "id": "konami_FTRI",
+                "provider": "konami"
+            },
+            {
+                "name": "フォーチュントリニティ2",
+                "id": "konami_FTRI2",
+                "provider": "konami"
+            },
+            {
+                "name": "フォーチュントリニティ3",
+                "id": "konami_FTRI3",
+                "provider": "konami"
+            },
+            {
+                "name": "ボンバーマン・ザ・メダル",
+                "id": "konami_BOMBER_MEDAL",
+                "provider": "konami"
+            },
+            {
+                "name": "マジカルシューター",
+                "id": "konami_MS",
+                "provider": "konami"
+            },
+            {
+                "name": "マーブルフィーバー",
+                "id": "konami_MARBLEFEVER",
+                "provider": "konami"
+            },
+            {
+                "name": "回せ！ギアドライヴ",
+                "id": "konami_GEAR_DRIVE",
+                "provider": "konami"
+            },
+            {
+                "name": "悪魔城ドラキュラ THE MEDAL",
+                "id": "konami_CVM",
+                "provider": "konami"
+            },
+            {
+                "name": "祭deフィーバー!!",
+                "id": "konami_MATSURI",
+                "provider": "konami"
+            },
+            {
+                "name": "ＭＥＴＥＯＳＰＡＲＫ",
+                "id": "konami_METEOSPARK",
+                "provider": "konami"
+            }
+        ]
+    },
+    {
+        "id": "kids-card",
+        "name": "キッズカードゲーム",
+        "color": "#9370DB",
+        "games": [
+            {
+                "id": "carddass_168",
+                "name": "ガンダムトライエイジ",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_418",
+                "name": "スーパードラゴンボールヒーローズ",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_454",
+                "name": "スーパー戦隊データカードダス",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_458",
+                "name": "データカードダス アイカツフレンズ！",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_403",
+                "name": "データカードダス ウルトラマン フュージョンファイト！",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_239",
+                "name": "データカードダス ガンバライジング",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_481",
+                "name": "データカードダス 妖怪ウォッチ ウキウキペディア 極",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_249",
+                "name": "バンダイデータスポット",
+                "provider": "carddass"
             }
         ]
     },
@@ -661,23 +728,23 @@
         "games": [
             {
                 "name": "ALL.Net Wi-Fi",
-                "provider": "sega",
-                "id": "sega_60"
-            },
-            {
-                "name": "占いコレクション トロッテ",
-                "provider": "sega",
-                "id": "sega_47"
-            },
-            {
-                "name": "ディズニーツムツム",
-                "provider": "konami",
-                "id": "konami_TSUM"
+                "id": "sega_60",
+                "provider": "sega"
             },
             {
                 "name": "PASELIチャージ機",
-                "provider": "konami",
-                "id": "konami_PCHARGER"
+                "id": "konami_PCHARGER",
+                "provider": "konami"
+            },
+            {
+                "name": "ディズニーツムツム",
+                "id": "konami_TSUM",
+                "provider": "konami"
+            },
+            {
+                "name": "占いコレクション トロッテ",
+                "id": "sega_47",
+                "provider": "sega"
             }
         ]
     }

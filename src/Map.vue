@@ -173,13 +173,13 @@ export default {
 
       const positionLayer = new VectorLayer({
         source: new VectorSource({
-          features: [positionFeature],
+          features: [positionFeature]
         }),
         zIndex: 3
       })
       const accuracyLayer = new VectorLayer({
         source: new VectorSource({
-          features: [accuracyFeature],
+          features: [accuracyFeature]
         }),
         zIndex: 0
       })
@@ -293,7 +293,7 @@ export default {
     this.createMap()
 
     // Request game centers list
-    axios.get('data/game_centers.json')
+    axios.get('data/game_centers_compact.json')
       .then(response => {
         this.createFeatures(response.data)
         this.updateMarkers()
