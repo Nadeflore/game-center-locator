@@ -227,6 +227,11 @@
                 "name": "三国志大戦",
                 "id": "sega_76",
                 "provider": "sega"
+            },
+            {
+                "id": "sega_kancolle-arcade",
+                "name": "艦これアーケード",
+                "provider": "sega"
             }
         ]
     },
@@ -578,6 +583,11 @@
                 "provider": "konami"
             },
             {
+                "id": "konami_EKEC2",
+                "name": "エルドラクラウン 紅蓮の覇者",
+                "provider": "konami"
+            },
+            {
                 "name": "オレカバトル パンドラのメダル",
                 "id": "konami_ORECA_PANDORA",
                 "provider": "konami"
@@ -680,6 +690,11 @@
         "color": "#9370DB",
         "games": [
             {
+                "id": "sega_94",
+                "name": "けものフレンズ３ プラネットツアーズ",
+                "provider": "sega"
+            },
+            {
                 "id": "carddass_168",
                 "name": "ガンダムトライエイジ",
                 "provider": "carddass"
@@ -712,11 +727,6 @@
             {
                 "id": "carddass_481",
                 "name": "データカードダス 妖怪ウォッチ ウキウキペディア 極",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_249",
-                "name": "バンダイデータスポット",
                 "provider": "carddass"
             }
         ]
