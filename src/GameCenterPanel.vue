@@ -1,7 +1,7 @@
 <template>
   <div id="game-center-panel" v-if="gameCenter">
     <div class="panel-header">
-      <img :src="`img/${gameCenter.logo || 'game'}_logo.png`" class="game-center-logo"/>
+      <img :src="`/img/${gameCenter.logo || 'game'}_logo.png`" class="game-center-logo"/>
       <button v-on:click="$emit('close')" class="panel-closer">✖</button>
       <h3 class="name">{{gameCenter.name}}</h3>
     </div>

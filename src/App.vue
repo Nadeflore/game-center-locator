@@ -1,43 +1,8 @@
 <template>
   <div id="app">
-    <Map :gamesByCategory="gamesByCategory"/>
+    <router-view/>
   </div>
 </template>
-
-<script>
-import axios from 'axios'
-
-import Map from './Map.vue'
-
-export default {
-  name: 'app',
-  components: {
-    Map
-  },
-  data () {
-    return {
-      gamesByCategory: []
-    }
-  },
-  methods: {
-    updateFilteredGames (gameIds) {
-      this.filteredGameIds = gameIds
-    },
-    updatePanelCollapsed (collapsed) {
-      this.panelCollapsed = collapsed
-    },
-    updateSelectedGameCenter (gameCenter) {
-      this.selectedGameCenter = gameCenter
-    }
-  },
-  mounted () {
-    axios.get('data/games_by_category.json')
-      .then(response => {
-        this.gamesByCategory = response.data
-      })
-  }
-}
-</script>
 
 <style>
 html, body, #app {

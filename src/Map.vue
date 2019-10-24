@@ -37,12 +37,31 @@ export default {
     FilterPanel,
     GameCenterPanel
   },
-  props: ['gamesByCategory'],
   data () {
     return {
-      selectedGameCenter: null,
+      gamesByCategory: [],
+      gameCenters: [],
       filteredGameIds: [],
       gameAmountFilter: 1
+    }
+  },
+  computed: {
+    selectedGameCenter: {
+      get () {
+        const selectedGameCenterName = this.$route.params.selectedGameCenterName
+        const found = this.gameCenters.find(e => e.name === selectedGameCenterName)
+        if (!found) {
+          return null
+        }
+
+        return found
+      },
+      set (value) {
+        if (!value) {
+          this.$router.push({ name: 'home' })
+        }
+        this.$router.push({ name: 'selected', params: { selectedGameCenterName: value.name } })
+      }
     }
   },
   methods: {
@@ -121,7 +140,7 @@ export default {
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
             opacity: 0.90,
-            src: `img/marker_${logo}_${amount}.png`
+            src: `/img/marker_${logo}_${amount}.png`
           }),
           zIndex: this.selectedGameCenter === gameCenter ? 2 : undefined
         })
@@ -173,13 +192,13 @@ export default {
 
       const positionLayer = new VectorLayer({
         source: new VectorSource({
-          features: [positionFeature],
+          features: [positionFeature]
         }),
         zIndex: 3
       })
       const accuracyLayer = new VectorLayer({
         source: new VectorSource({
-          features: [accuracyFeature],
+          features: [accuracyFeature]
         }),
         zIndex: 0
       })
@@ -238,7 +257,6 @@ export default {
         )
         if (feature) {
           this.selectedGameCenter = feature.get('gameCenter')
-          this.$emit('selectGameCenter', this.selectedGameCenter)
         }
       })
 
@@ -289,13 +307,20 @@ export default {
     }
   },
   mounted () {
+    // Request games list
+    axios.get('/data/games_by_category.json')
+      .then(response => {
+        this.gamesByCategory = response.data
+      })
+
     // Create basic map
     this.createMap()
 
     // Request game centers list
-    axios.get('data/game_centers_compact.json')
+    axios.get('/data/game_centers_compact.json')
       .then(response => {
-        this.createFeatures(response.data)
+        this.gameCenters = response.data
+        this.createFeatures(this.gameCenters)
         this.updateMarkers()
       })
 
