@@ -39,11 +39,11 @@ export default {
   components: {
     Checkbox
   },
-  props: ['gamesByCategory'],
+  props: ['gamesByCategory', 'defaultSelectedGameIds', 'defaultGameAmountFilter'],
   data () {
     return {
-      selectedGameIds: [],
-      gameAmountFilter: 1,
+      selectedGameIds: this.defaultSelectedGameIds,
+      gameAmountFilter: this.defaultGameAmountFilter,
       collapsed: true,
       expandedCategoryIds: []
     }

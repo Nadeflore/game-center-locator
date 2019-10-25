@@ -14,8 +14,8 @@ export default new Router({
       component: Map
     },
     {
-      path: '/selected/:selectedGameCenterName',
-      name: 'selected',
+      path: '/map/:view',
+      name: 'map',
       component: Map
     }
   ]

@@ -1,7 +1,7 @@
 <template>
   <div id="mapPanelContainer">
-    <FilterPanel :gamesByCategory="gamesByCategory" @change="updateFilteredGames"/>
-    <div id='map' :class="{ 'right-panel-open': selectedGameCenter}">
+    <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter"  @change="updateFilteredGames"/>
+    <div id='map' :class="{'right-panel-open': selectedGameCenter}">
     </div>
     <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
   </div>
@@ -13,7 +13,7 @@ import 'ol/ol.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import Geolocation from 'ol/Geolocation.js'
-import { fromLonLat } from 'ol/proj'
+import { fromLonLat, toLonLat } from 'ol/proj'
 import { Point } from 'ol/geom'
 import { Style, Circle as CircleStyle, Fill, Stroke, Icon } from 'ol/style'
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer'
@@ -40,15 +40,13 @@ export default {
   data () {
     return {
       gamesByCategory: [],
-      gameCenters: [],
-      filteredGameIds: [],
-      gameAmountFilter: 1
+      gameCenters: []
     }
   },
   computed: {
     selectedGameCenter: {
       get () {
-        const selectedGameCenterName = this.$route.params.selectedGameCenterName
+        const selectedGameCenterName = this.$route.query.selected
         const found = this.gameCenters.find(e => e.name === selectedGameCenterName)
         if (!found) {
           return null
@@ -57,10 +55,55 @@ export default {
         return found
       },
       set (value) {
-        if (!value) {
-          this.$router.push({ name: 'home' })
+        if (value) {
+          if (value.name !== this.$route.query.selected) {
+            this.$router.replace({ query: { ...this.$route.query, selected: value.name } })
+          }
+        } else {
+          const { selected, ...newQuery } = this.$route.query
+          this.$router.replace({ query: newQuery })
         }
-        this.$router.push({ name: 'selected', params: { selectedGameCenterName: value.name } })
+      }
+    },
+    gameAmountFilter: {
+      get () {
+        const gameAmountFilter = this.$route.query.filterAmount
+        if (!gameAmountFilter) {
+          return 1
+        }
+
+        return gameAmountFilter
+      },
+      set (gameAmountFilter) {
+        if (gameAmountFilter !== 1) {
+          if (gameAmountFilter !== +this.$route.query.filterAmount) {
+            this.$router.replace({ query: { ...this.$route.query, filterAmount: gameAmountFilter } })
+          }
+        } else if (this.$route.query.filterAmount) {
+          const { filterAmount, ...newQuery } = this.$route.query
+          this.$router.replace({ query: newQuery })
+        }
+      }
+    },
+    filteredGameIds: {
+      get () {
+        const filteredGameIdsString = this.$route.query.filter
+        if (!filteredGameIdsString) {
+          return []
+        }
+
+        return filteredGameIdsString.split(',')
+      },
+      set (filteredGameIds) {
+        if (filteredGameIds && filteredGameIds.length > 0) {
+          const filteredGameIdsString = filteredGameIds.join(',')
+          if (filteredGameIdsString !== this.$route.query.filter) {
+            this.$router.replace({ query: { ...this.$route.query, filter: filteredGameIdsString } })
+          }
+        } else if (this.$route.query.filter) {
+          const { filter, ...newQuery } = this.$route.query
+          this.$router.replace({ query: newQuery })
+        }
       }
     }
   },
@@ -70,7 +113,18 @@ export default {
      * Called only once at setup
      */
     createMap () {
-      const center = fromLonLat([135.4824549, 34.6826779])
+      // Default view coordinates
+      let center = fromLonLat([135.4824549, 34.6826779])
+      let zoom = 12
+
+      // Extract view from url
+      if (this.$route.params.view) {
+        const match = /@(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)z/.exec(this.$route.params.view)
+        if (match) {
+          center = fromLonLat([+match[2], +match[1]])
+          zoom = +match[3]
+        }
+      }
 
       // Create custom control for geoloc
       const vueComponent = this
@@ -109,7 +163,7 @@ export default {
         ],
         view: new View({
           center,
-          zoom: 12
+          zoom
         })
       })
 
@@ -153,6 +207,17 @@ export default {
         zIndex: 1
       })
       unwatchedStore.map.addLayer(unwatchedStore.markersLayer)
+
+      // Add listener to view move event
+      unwatchedStore.map.on('moveend', () => {
+        const view = unwatchedStore.map.getView()
+        const coordinates = toLonLat(view.getCenter())
+        const zoom = view.getZoom()
+        const viewString = `@${coordinates[1]},${coordinates[0]},${zoom}z`
+        if (this.$route.params.view !== viewString) {
+          this.$router.replace({ name: 'map', params: { view: viewString }, query: this.$route.query })
+        }
+      })
     },
     /**
      * Configure geolocation
