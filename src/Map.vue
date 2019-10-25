@@ -25,6 +25,7 @@ import FilterPanel from './FilterPanel.vue'
 import GameCenterPanel from './GameCenterPanel.vue'
 
 const unwatchedStore = {
+  gameCenters: [],
   map: null,
   source: null,
   features: [],
@@ -40,14 +41,17 @@ export default {
   data () {
     return {
       gamesByCategory: [],
-      gameCenters: []
+      gameCentersLoaded: false
     }
   },
   computed: {
     selectedGameCenter: {
       get () {
+        if (!this.gameCentersLoaded) {
+          return null
+        }
         const selectedGameCenterName = this.$route.query.selected
-        const found = this.gameCenters.find(e => e.name === selectedGameCenterName)
+        const found = unwatchedStore.gameCenters.find(e => e.name === selectedGameCenterName)
         if (!found) {
           return null
         }
@@ -384,8 +388,9 @@ export default {
     // Request game centers list
     axios.get('/data/game_centers_compact.json')
       .then(response => {
-        this.gameCenters = response.data
-        this.createFeatures(this.gameCenters)
+        unwatchedStore.gameCenters = response.data
+        this.gameCentersLoaded = true
+        this.createFeatures(unwatchedStore.gameCenters)
         this.updateMarkers()
       })
 
