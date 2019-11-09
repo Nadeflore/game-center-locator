@@ -1,5 +1,6 @@
 <template>
   <div id="mapPanelContainer">
+    <MessageBar v-if="statusMessage" :error="networkError">{{statusMessage}}</MessageBar>
     <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter"  @change="updateFilteredGames"/>
     <div id='map' :class="{'right-panel-open': selectedGameCenter}">
     </div>
@@ -23,6 +24,7 @@ import Feature from 'ol/Feature'
 
 import FilterPanel from './FilterPanel.vue'
 import GameCenterPanel from './GameCenterPanel.vue'
+import MessageBar from './components/MessageBar.vue'
 
 const unwatchedStore = {
   gameCenters: [],
@@ -36,18 +38,32 @@ export default {
   name: 'gameCenterMap',
   components: {
     FilterPanel,
-    GameCenterPanel
+    GameCenterPanel,
+    MessageBar
   },
   data () {
     return {
       gamesByCategory: [],
-      gameCentersLoaded: false
+      gamesListLoaded: false,
+      gameCentersLoaded: false,
+      networkError: false
     }
   },
   computed: {
+    statusMessage () {
+      if (this.networkError) {
+        return 'Error occured during resources loading.'
+      }
+
+      if (!this.gamesListLoaded || !this.gameCentersLoaded) {
+        return 'Loading...'
+      }
+
+      return null
+    },
     selectedGameCenter: {
       get () {
-        if (!this.gameCentersLoaded) {
+        if (this.gameCentersLoaded === null) {
           return null
         }
         const selectedGameCenterName = this.$route.query.selected
@@ -380,6 +396,11 @@ export default {
     axios.get('/data/games_by_category.json')
       .then(response => {
         this.gamesByCategory = response.data
+        this.gamesListLoaded = true
+      })
+      .catch(error => {
+        this.networkError = true
+        console.error(error)
       })
 
     // Create basic map
@@ -392,6 +413,10 @@ export default {
         this.gameCentersLoaded = true
         this.createFeatures(unwatchedStore.gameCenters)
         this.updateMarkers()
+      })
+      .catch(error => {
+        this.networkError = true
+        console.error(error)
       })
 
     // Enable geolocation
