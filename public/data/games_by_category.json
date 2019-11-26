@@ -105,11 +105,6 @@
                 "provider": "taito"
             },
             {
-                "id": "namco_synchronica",
-                "name": "シンクロニカ",
-                "provider": "namco"
-            },
-            {
                 "name": "ノスタルジア",
                 "id": "konami_NOSTALGIA",
                 "provider": "konami"
@@ -374,6 +369,83 @@
                 "name": "麻雀格闘倶楽部(ﾊｲｸﾞﾚｰﾄﾞﾓﾃﾞﾙ)",
                 "id": "konami_MFCU_HG",
                 "provider": "konami"
+            }
+        ]
+    },
+    {
+        "id": "kids-card",
+        "name": "キッズカードゲーム",
+        "color": "#9370DB",
+        "games": [
+            {
+                "id": "sega_94",
+                "name": "けものフレンズ３ プラネットツアーズ",
+                "provider": "sega"
+            },
+            {
+                "id": "tarts_inazuma-ac",
+                "name": "イナズマイレブンAC",
+                "provider": "tarts"
+            },
+            {
+                "id": "carddass_gundam-try",
+                "name": "ガンダムトライエイジ",
+                "provider": "carddass"
+            },
+            {
+                "id": "tarts_prichan",
+                "name": "キラッとプリ☆チャン",
+                "provider": "tarts"
+            },
+            {
+                "id": "tarts_jarasta",
+                "name": "ジャラステ",
+                "provider": "tarts"
+            },
+            {
+                "id": "carddass_sdbh",
+                "name": "スーパードラゴンボールヒーローズ",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_sentai",
+                "name": "スーパー戦隊データカードダス",
+                "provider": "carddass"
+            },
+            {
+                "id": "tarts_zw-ac",
+                "name": "ゾイドワイルド バトルカードハンター",
+                "provider": "tarts"
+            },
+            {
+                "id": "carddass_aikatsu",
+                "name": "データカードダス アイカツオンパレード！",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_ultraman",
+                "name": "データカードダス ウルトラマン フュージョンファイト！",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_ganbarizing",
+                "name": "データカードダス ガンバライジング",
+                "provider": "carddass"
+            },
+            {
+                "id": "carddass_ukiukipedia",
+                "name": "データカードダス 妖怪ウォッチ ウキウキペディア 極",
+                "provider": "carddass"
+            },
+            {
+                "id": "tarts_pokemongaole",
+                "name": "ポケモンガオーレ",
+                "provider": "tarts"
+            },
+            {
+                "id": "tarts_heroesbattle",
+                "name": "僕のヒーローアカデミア ヒーローズバトルラッシュ",
+                "provider": "tarts"
             }
         ]
     },
@@ -681,53 +753,6 @@
                 "name": "ＭＥＴＥＯＳＰＡＲＫ",
                 "id": "konami_METEOSPARK",
                 "provider": "konami"
-            }
-        ]
-    },
-    {
-        "id": "kids-card",
-        "name": "キッズカードゲーム",
-        "color": "#9370DB",
-        "games": [
-            {
-                "id": "sega_94",
-                "name": "けものフレンズ３ プラネットツアーズ",
-                "provider": "sega"
-            },
-            {
-                "id": "carddass_168",
-                "name": "ガンダムトライエイジ",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_418",
-                "name": "スーパードラゴンボールヒーローズ",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_454",
-                "name": "スーパー戦隊データカードダス",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_458",
-                "name": "データカードダス アイカツフレンズ！",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_403",
-                "name": "データカードダス ウルトラマン フュージョンファイト！",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_239",
-                "name": "データカードダス ガンバライジング",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_481",
-                "name": "データカードダス 妖怪ウォッチ ウキウキペディア 極",
-                "provider": "carddass"
             }
         ]
     },
