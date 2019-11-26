@@ -62,6 +62,12 @@ export default {
   flex-direction: column;
 }
 
+@media(max-width: 40em) {
+  #game-center-panel {
+    width: 100%;
+  }
+}
+
 .panel-header {
   background: #428df0;
   overflow: auto;
@@ -107,4 +113,5 @@ export default {
   display: flex;
   align-items: center;
 }
+
 </style>

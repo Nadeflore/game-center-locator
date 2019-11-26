@@ -125,6 +125,17 @@ export default {
   box-shadow: 3px 3px 4px #0003;
 }
 
+@media(max-width: 40em) {
+  #filter-panel:not(.collapsed) {
+    width: 100%;
+  }
+
+  #filter-panel:not(.collapsed) #panel-tab {
+    right: 0;
+    box-shadow: none;
+  }
+}
+
 #filter-panel.collapsed {
   left: -20em;
 }
