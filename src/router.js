@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Map from './Map.vue'
+import NotFound from './NotFound.vue'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/map/:view',
       name: 'map',
       component: Map
+    },
+    {
+      path: '*',
+      name: 'notfound',
+      component: NotFound
     }
   ]
 })
