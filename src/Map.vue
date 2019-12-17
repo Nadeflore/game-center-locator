@@ -399,8 +399,7 @@ export default {
         this.gamesListLoaded = true
       })
       .catch(error => {
-        this.networkError = true
-        console.error(error)
+        this.networkError = error
       })
 
     // Create basic map
@@ -415,8 +414,7 @@ export default {
         this.updateMarkers()
       })
       .catch(error => {
-        this.networkError = true
-        console.error(error)
+        this.networkError = error
       })
 
     // Enable geolocation
