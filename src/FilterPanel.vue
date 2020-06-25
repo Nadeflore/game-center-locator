@@ -51,7 +51,7 @@ export default {
   computed: {
     totalGames () {
       let total = 0
-      for (let category of this.gamesByCategory) {
+      for (const category of this.gamesByCategory) {
         total += category.games.length
       }
       return total

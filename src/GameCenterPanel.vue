@@ -31,7 +31,7 @@ export default {
         return {}
       }
       const result = []
-      for (let category of this.gamesByCategory) {
+      for (const category of this.gamesByCategory) {
         const gamesForCategory = category.games.filter(game => this.gameCenter.gameIds.includes(game.id))
         if (gamesForCategory.length > 0) {
           result.push({
