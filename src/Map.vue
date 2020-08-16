@@ -204,7 +204,6 @@ export default {
       unwatchedStore.map.addControl(geocoder)
 
       geocoder.on('addresschosen', function (evt) {
-        console.log(evt.coordinate)
         unwatchedStore.map.getView().animate(
           {
             center: evt.coordinate,
