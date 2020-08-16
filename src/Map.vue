@@ -428,7 +428,7 @@ export default {
   },
   mounted () {
     // Request games list
-    axios.get('/data/games_by_category.json')
+    axios.get('/data/games.json')
       .then(response => {
         // Add computed game ids list with cab type
         const categories = response.data
