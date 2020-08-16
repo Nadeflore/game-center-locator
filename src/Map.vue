@@ -177,6 +177,7 @@ export default {
           new TileLayer({
             source: new XYZ({
               url: 'https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+              // url: 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
               attributions: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
             })
           })
@@ -194,7 +195,7 @@ export default {
       const getIconStyle = (feature) => {
         const gameCenter = feature.get('gameCenter')
         // game amount
-        const gamesCount = gameCenter.gameIds.length
+        const gamesCount = Object.keys(gameCenter.games).length
         let amount
         if (gamesCount <= 3) {
           amount = 'l'
@@ -312,11 +313,21 @@ export default {
       const featuresFiltered = unwatchedStore.features.filter(feature => {
         const gameCenter = feature.get('gameCenter')
         if (this.filteredGameIds.length > 0) {
+          const gameCenterGames = []
+          for (const [gameId, game] of Object.entries(gameCenter.games)) {
+            gameCenterGames.push(gameId)
+            if (game.cabs) {
+              for (const cabId of Object.keys(game.cabs)) {
+                gameCenterGames.push(`${gameId}[${cabId}]`)
+              }
+            }
+          }
+
           // Only keep game centers with a least `gameAmountFilter` of the selected games
-          return this.filteredGameIds.filter(gameId => gameCenter.gameIds.includes(gameId)).length >= this.gameAmountFilter
+          return this.filteredGameIds.filter(gameId => gameCenterGames.includes(gameId)).length >= this.gameAmountFilter
         } else {
           // Only keep game centers with at least `gameAmountFilter` of games
-          return gameCenter.gameIds.length >= this.gameAmountFilter
+          return Object.keys(gameCenter.games).length >= this.gameAmountFilter
         }
       })
 
@@ -395,7 +406,22 @@ export default {
     // Request games list
     axios.get('/data/games_by_category.json')
       .then(response => {
-        this.gamesByCategory = response.data
+        // Add computed game ids list with cab type
+        const categories = response.data
+        for (const category of categories) {
+          const categoryGameIds = []
+          for (const game of category.games) {
+            categoryGameIds.push(game.id)
+            if (game.cabs) {
+              for (const cabId of Object.keys(game.cabs)) {
+                categoryGameIds.push(`${game.id}[${cabId}]`)
+              }
+            }
+          }
+          category.gameIds = categoryGameIds
+        }
+
+        this.gamesByCategory = categories
         this.gamesListLoaded = true
       })
       .catch(error => {

@@ -13,10 +13,16 @@
           <button class="category-toogle-button" @click="toogleCategory(category.id)">▼</button>
         </h4>
         <ul v-show="expandedCategoryIds.includes(category.id)" class="games-list">
-          <li v-for="game in category.games" :key="game.id" class="game-item">
+          <li v-for="game in category.games" :key="game.id" class="game">
             <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black" size="1em">
-              {{game.name}}
+              <img :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
             </Checkbox>
+            <ul v-if="game.cabs && Object.keys(game.cabs).length" class="cabs">
+              <li v-for="cab in Object.keys(game.cabs)" :key="cab">
+                <Checkbox class="cab-checkbox" :id="game.id + '[' + cab + ']'" :value="game.id + '[' + cab + ']'" v-model="selectedGameIds" color="black" size="1em">
+                  {{game.cabs[cab]}}</Checkbox>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -62,22 +68,21 @@ export default {
   },
   methods: {
     getCategoryChecked (category) {
-      return category.games.every(game => this.selectedGameIds.includes(game.id))
+      return category.gameIds.every(gameId => this.selectedGameIds.includes(gameId))
     },
     getCategoryIndeterminate (category) {
       const allSelected = this.getCategoryChecked(category)
-      const someSelected = category.games.some(game => this.selectedGameIds.includes(game.id))
+      const someSelected = category.gameIds.some(gameId => this.selectedGameIds.includes(gameId))
       return someSelected && !allSelected
     },
     categoryStateChange (category, event) {
-      const categoryGameIds = category.games.map(game => game.id)
       if (event.target.checked) {
         // Add all games of this category
-        const gameIdsToAdd = categoryGameIds.filter(gameId => !this.selectedGameIds.includes(gameId))
+        const gameIdsToAdd = category.gameIds.filter(gameId => !this.selectedGameIds.includes(gameId))
         this.selectedGameIds = this.selectedGameIds.concat(gameIdsToAdd)
       } else {
         // Remove all games of this category
-        this.selectedGameIds = this.selectedGameIds.filter(gameId => !categoryGameIds.includes(gameId))
+        this.selectedGameIds = this.selectedGameIds.filter(gameId => !category.gameIds.includes(gameId))
       }
     },
     toogleCollapse () {
@@ -198,13 +203,27 @@ h2 {
   height: 100%;
   padding: 0 1.5em;
 }
-ul.games-list {
+ul {
   list-style-type: none;
-  padding-left: 1em;
+  padding-left: 0.5em;
+}
+.games-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.game-item {
+.game {
   margin: 0.3em;
+}
+
+.cabs li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7em;
+  letter-spacing: -0.105em;
 }
 
 button {
@@ -244,5 +263,8 @@ button:focus {
   border: none;
   appearance: none;
   background: #48f;
+}
+.game-logo {
+  width: 6em;
 }
 </style>

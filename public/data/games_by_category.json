@@ -7,121 +7,143 @@
             {
                 "name": "CHUNITHM",
                 "id": "sega_58",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "DANCERUSH STARDOM",
                 "id": "konami_DAN",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "DanceDanceRevolution",
                 "id": "konami_DDR",
-                "provider": "konami"
-            },
-            {
-                "name": "DanceDanceRevolution 20th anniversary model",
-                "id": "konami_DDR20TH",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "DDR20TH": "20th anniversary model"
+                }
             },
             {
                 "name": "DanceEvolution ARCADE",
                 "id": "konami_DANEVOAC",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GITADORA DrumMania",
                 "id": "konami_GITADORADM",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GITADORA GuitarFreaks",
                 "id": "konami_GITADORAGF",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "MUSECA",
                 "id": "konami_MUSECA",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "Pump It Up シリーズ",
                 "id": "sega_69",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "REFLEC BEAT",
                 "id": "konami_REFLECC",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "SOUND VOLTEX",
                 "id": "konami_SDVX",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "WACCA",
                 "id": "sega_93",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "beatmania IIDX",
                 "id": "konami_IIDX",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "IIDX_LN": "LIGHTNING MODEL"
+                }
             },
             {
                 "name": "jubeat",
                 "id": "konami_JUBEAT",
+                "updated": "2020-06-26",
                 "provider": "konami"
-            },
-            {
-                "name": "maimai FiNALE",
-                "id": "sega_90",
-                "provider": "sega"
             },
             {
                 "name": "maimai でらっくす",
                 "id": "sega_96",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "pop'n music",
                 "id": "konami_PMSP",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "NEW": "ニューモデル",
+                    "STD": "スタンダードモデル"
+                }
             },
             {
                 "name": "オンゲキ",
                 "id": "sega_88",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "taito_groovecoaster",
                 "name": "グル―ヴコースター",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "id": "taito_t_ffac",
                 "name": "シアトリズム FF オールスターカーニバル",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "name": "ノスタルジア",
                 "id": "konami_NOSTALGIA",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "id": "taito_lovelive-sifacns",
                 "name": "ラブライブ！SIFAC NextStage",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "name": "初音ミク Project DIVA Arcade Future Tone",
                 "id": "sega_34",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "namco_taiko",
                 "name": "太鼓の達人",
+                "updated": "2020-06-26",
                 "provider": "namco"
             }
         ]
@@ -134,56 +156,67 @@
             {
                 "name": "HOUSE OF THE DEAD: SCARLET DAWN",
                 "id": "sega_87",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "SEGA World Drivers Championship",
                 "id": "sega_82",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "ザ★ビシバシ",
                 "id": "konami_TBB",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ビシバシチャンネル",
                 "id": "konami_BBCH",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "id": "namco_mariokart-acgpdx",
                 "name": "マリオカート アーケードグランプリ デラックス",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "name": "マリオ＆ソニック AT リオオリンピック™ アーケードゲーム",
                 "id": "sega_72",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
-                "id": "namco_lostland",
-                "name": "ロストランドアドベンチャー",
-                "provider": "namco"
+                "id": "sega_97",
+                "name": "マリオ＆ソニック AT 東京2020オリンピック™ アーケードゲーム",
+                "updated": "2020-06-26",
+                "provider": "sega"
             },
             {
-                "id": "namco_wanganmaxi6",
-                "name": "湾岸ミッドナイト マキシマムチューン 6",
+                "id": "namco_wanganmaxi6r",
+                "name": "湾岸ミッドナイト マキシマムチューン 6R",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "id": "taito_denshadego",
                 "name": "電車でＧＯ！！",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "name": "頭文字D ARCADE STAGE 8 インフィニティ",
                 "id": "sega_35",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "頭文字D ARCADE STAGE Zero",
                 "id": "sega_78",
+                "updated": "2020-06-26",
                 "provider": "sega"
             }
         ]
@@ -196,36 +229,31 @@
             {
                 "name": "BASEBALL COLLECTION",
                 "id": "konami_BBC",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "Fate / Grand Order Arcade",
                 "id": "sega_89",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "WCCF FOOTISTA 2019",
                 "id": "sega_91",
-                "provider": "sega"
-            },
-            {
-                "name": "WORLD CLUB Champion Football 2017-2018",
-                "id": "sega_83",
-                "provider": "sega"
-            },
-            {
-                "name": "クロノレガリア",
-                "id": "sega_85",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "三国志大戦",
                 "id": "sega_76",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "sega_kancolle-arcade",
                 "name": "艦これアーケード",
+                "updated": "2020-06-26",
                 "provider": "sega"
             }
         ]
@@ -238,137 +266,158 @@
             {
                 "name": "ALL.Net P-ras MULTI",
                 "id": "sega_24",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "ALL.Net P-ras MULTI バージョン３",
                 "id": "sega_92",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "BORDER BREAK",
                 "id": "sega_6",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "taito_nxl",
                 "name": "NESiCAxLive",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "id": "taito_nxl2",
                 "name": "NESiCAxLive2",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "name": "Steel Chronicle VICTROOPERS",
                 "id": "konami_SC1",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "Winning Eleven AC 2014",
                 "id": "konami_WEAC2014ALL",
-                "provider": "konami"
-            },
-            {
-                "name": "Winning Eleven AC 2014(新筺体)",
-                "id": "konami_WEAC2014WIDE",
-                "provider": "konami"
-            },
-            {
-                "name": "Winning Eleven AC 2014(ｽﾀﾝﾀﾞｰﾄﾞ筺体)",
-                "id": "konami_WEAC2014STD",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "WEAC2014STD": "スタンダード筺体",
+                    "WEAC2014WIDE": "新筺体"
+                }
             },
             {
                 "name": "Wonderland Wars",
                 "id": "sega_43",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "taito_gunslinger-stratos",
                 "name": "ガンスリンガー ストラトス",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "name": "クイズマジックアカデミー",
                 "id": "konami_QMA9",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "QMA_HG": "ハイグレードモデル"
+                }
+            },
+            {
+                "id": "namco_jojols",
+                "name": "ジョジョの奇妙な冒険 ラストサバイバー",
+                "updated": "2020-06-26",
+                "provider": "namco"
+            },
+            {
+                "id": "taito_sfv_ac",
+                "name": "ストリートファイターV タイプアーケード",
+                "updated": "2020-06-26",
+                "provider": "taito"
             },
             {
                 "name": "セガNET麻雀 MJ Arcade",
                 "id": "sega_29",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "namco_saoac",
                 "name": "ソードアート・オンライン アーケード",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "id": "taito_dff",
                 "name": "ディシディア ファイナルファンタジー",
+                "updated": "2020-06-26",
                 "provider": "taito"
             },
             {
                 "id": "namco_db-zenkai",
                 "name": "ドラゴンボール ゼンカイバトル",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "name": "ボンバーガール",
                 "id": "konami_BOMBERGIRL",
+                "updated": "2020-06-26",
                 "provider": "konami"
+            },
+            {
+                "id": "namco_pokerstadium",
+                "name": "ポーカースタジアム",
+                "updated": "2020-06-26",
+                "provider": "namco"
             },
             {
                 "name": "天下一将棋会2",
                 "id": "konami_SHOGI2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "id": "taito_starwing",
                 "name": "星と翼のパラドクス",
+                "updated": "2020-06-26",
                 "provider": "taito"
-            },
-            {
-                "id": "namco_gundam-vs-extreme-acmb-on",
-                "name": "機動戦士ガンダム エクストリームバーサス マキシブースト ON",
-                "provider": "namco"
             },
             {
                 "id": "namco_gundam-vs-extreme-ac2",
                 "name": "機動戦士ガンダム エクストリームバーサス2",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "name": "機動戦士ガンダム 戦場の絆",
                 "id": "namco_gundam-kizuna",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "id": "namco_tk7fr-r2",
                 "name": "鉄拳7 FATED RETRIBUTION ROUND 2",
+                "updated": "2020-06-26",
                 "provider": "namco"
             },
             {
                 "name": "麻雀格闘倶楽部",
                 "id": "konami_MFCU",
-                "provider": "konami"
-            },
-            {
-                "name": "麻雀格闘倶楽部(ｽﾀﾝﾀﾞｰﾄﾞﾓﾃﾞﾙ)",
-                "id": "konami_MFCU_STD",
-                "provider": "konami"
-            },
-            {
-                "name": "麻雀格闘倶楽部(ﾆｭｰｷｬﾋﾞﾈｯﾄ機能搭載ﾓﾃﾞﾙ)",
-                "id": "konami_MFCU_NEW",
-                "provider": "konami"
-            },
-            {
-                "name": "麻雀格闘倶楽部(ﾊｲｸﾞﾚｰﾄﾞﾓﾃﾞﾙ)",
-                "id": "konami_MFCU_HG",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "MFCU_STD": "スタンダードモデル",
+                    "MFCU_NEW": "ニューモデル",
+                    "MFCU_HG": "ハイグレードモデル"
+                }
             }
         ]
     },
@@ -380,71 +429,73 @@
             {
                 "id": "sega_94",
                 "name": "けものフレンズ３ プラネットツアーズ",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "id": "tarts_inazuma-ac",
                 "name": "イナズマイレブンAC",
+                "updated": "2020-06-26",
                 "provider": "tarts"
             },
             {
                 "id": "carddass_gundam-try",
                 "name": "ガンダムトライエイジ",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "tarts_prichan",
                 "name": "キラッとプリ☆チャン",
+                "updated": "2020-06-26",
                 "provider": "tarts"
             },
             {
                 "id": "tarts_jarasta",
                 "name": "ジャラステ",
+                "updated": "2020-06-26",
                 "provider": "tarts"
             },
             {
                 "id": "carddass_sdbh",
                 "name": "スーパードラゴンボールヒーローズ",
-                "provider": "carddass"
-            },
-            {
-                "id": "carddass_sentai",
-                "name": "スーパー戦隊データカードダス",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "tarts_zw-ac",
                 "name": "ゾイドワイルド バトルカードハンター",
+                "updated": "2020-06-26",
                 "provider": "tarts"
             },
             {
                 "id": "carddass_aikatsu",
                 "name": "データカードダス アイカツオンパレード！",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "carddass_ultraman",
                 "name": "データカードダス ウルトラマン フュージョンファイト！",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "carddass_ganbarizing",
                 "name": "データカードダス ガンバライジング",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "carddass_ukiukipedia",
-                "name": "データカードダス 妖怪ウォッチ ウキウキペディア 極",
+                "name": "データカードダス 妖怪ウォッチ ウキウキペディア学園Y",
+                "updated": "2020-06-26",
                 "provider": "carddass"
             },
             {
                 "id": "tarts_pokemongaole",
                 "name": "ポケモンガオーレ",
-                "provider": "tarts"
-            },
-            {
-                "id": "tarts_heroesbattle",
-                "name": "僕のヒーローアカデミア ヒーローズバトルラッシュ",
+                "updated": "2020-06-26",
                 "provider": "tarts"
             }
         ]
@@ -457,301 +508,332 @@
             {
                 "name": "DreamSphere GRANDCROSS",
                 "id": "konami_dreamsphere",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "FEATURE Premium シリーズ",
                 "id": "konami_FEATUREPREMIUM",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "FantasicFever3 Twinkle Fairytale",
                 "id": "konami_FF3",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GI-GranDesire",
                 "id": "konami_GIGD",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GI-HORSEPARK GX",
                 "id": "konami_GIHPGX",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-HORSEPARK GX STD",
-                "id": "konami_GIHPGX_STD",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GI-HORSEPARK JUDGMENT",
                 "id": "konami_GIHPJM",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-HORSEPARK JUDGMENT STD",
-                "id": "konami_GIHPJM_STD",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "GIHPJM_STD": "スタンダードモデル"
+                }
             },
             {
                 "name": "GI-TURF WILD3",
                 "id": "konami_GITW3",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GI-Turf TV",
                 "id": "konami_GITTV",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GI-VICTORY ROAD",
                 "id": "konami_GIVROAD",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-VICTORY ROAD(DXタイプ)",
-                "id": "konami_GIVROAD_DX",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-VICTORY ROAD(STDタイプ)",
-                "id": "konami_GIVROAD_STD",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "GIVROAD_STD": "スタンダードモデル",
+                    "GIVROAD_DX": "DXタイプ"
+                }
             },
             {
                 "name": "GI-WorldClassic",
                 "id": "konami_GIWorldClassic",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-WorldClassic(DXタイプ)",
-                "id": "konami_GIWorldClassic_VR_DX",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-WorldClassic(GD_Sタイプ)",
-                "id": "konami_GIWorldClassic_GD_S",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-WorldClassic(GDタイプ)",
-                "id": "konami_GIWorldClassic_GD",
-                "provider": "konami"
-            },
-            {
-                "name": "GI-WorldClassic(STDタイプ)",
-                "id": "konami_GIWorldClassic_VR_SD",
-                "provider": "konami"
+                "updated": "2020-06-26",
+                "provider": "konami",
+                "cabs": {
+                    "GIWorldClassic_GD_S": "GD Sタイプ",
+                    "GIWorldClassic_VR_DX": "DXタイプ",
+                    "GIWorldClassic_GD": "GDタイプ",
+                    "GIWorldClassic_VR_SD": "STDタイプ"
+                }
             },
             {
                 "name": "GRANDCROSS LEGEND",
                 "id": "konami_GRANDCROSS_LEGEND",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "GRANDCROSS PREMIUM",
                 "id": "konami_GCP",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "Infinity Rings",
                 "id": "konami_IRINGS",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "MILLIONET",
                 "id": "konami_MILLIONET",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "PanicPirates",
                 "id": "konami_PANIC",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "SPIN FEVER2",
                 "id": "konami_SPINFEVER2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "SPINFEVER 夢幻のオーケストラ",
                 "id": "konami_SPINFEVER3",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ShadowPrincess",
                 "id": "konami_SHADOWPRINCESS",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
-                "name": "StarHorse3 SeasonIV DREAM ON THE TURF",
                 "id": "sega_65",
+                "name": "StarHorse3 SeasonIV DREAM ON THE TURF",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "StarHorse3 SeasonVI FULL THROTTLE",
                 "id": "sega_80",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "StarHorse3 SeasonVII GREAT JOURNEY",
                 "id": "sega_86",
+                "updated": "2020-06-26",
+                "provider": "sega"
+            },
+            {
+                "id": "sega_95",
+                "name": "StarHorse4",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "That's PARADiCE",
                 "id": "sega_8",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "Venus Fountain",
                 "id": "konami_VENUSFOUNTAIN",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "WONDERMARCH",
                 "id": "konami_WONDERMARCH",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "おとぎの国のアニマ",
                 "id": "konami_ANIMAL4",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ご当地あラウンド",
                 "id": "konami_GOTOCHI_AROUND",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "アニマロッタ",
                 "id": "konami_ANIMAL",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "アニマロッタ アニマと雲の大樹",
                 "id": "konami_ANIMAL5",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "アニマロッタ2",
                 "id": "konami_ANIMAL2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "アニマロッタ3",
                 "id": "konami_ANIMAL3",
-                "provider": "konami"
-            },
-            {
-                "name": "エターナルナイツBRAVE",
-                "id": "konami_EKBRAVE",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "エルドラクラウン",
                 "id": "konami_EKEC",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "id": "konami_EKEC2",
                 "name": "エルドラクラウン 紅蓮の覇者",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "オレカバトル パンドラのメダル",
                 "id": "konami_ORECA_PANDORA",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "カラコロッタ",
                 "id": "konami_COLORCOLOTTA",
+                "updated": "2020-06-26",
+                "provider": "konami"
+            },
+            {
+                "id": "konami_COLORCOLOTTA4",
+                "name": "カラコロッタ めざせ！夢の宝島",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "カラコロッタ 太陽とひみつの島",
                 "id": "konami_COLORCOLOTTA3",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "カラコロッタ2",
                 "id": "konami_COLORCOLOTTA2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "グランドクロス クロニクル",
                 "id": "konami_GCC",
+                "updated": "2020-06-26",
+                "provider": "konami"
+            },
+            {
+                "id": "konami_SMASTA",
+                "name": "スマッシュスタジアム",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ツナガロッタ",
                 "id": "konami_TSUNAGALOTTA",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ツナガロッタ アニマと虹色の秘境",
                 "id": "konami_TSUNAGALOTTA2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "トゥインクルドロップ",
                 "id": "konami_TD",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "トレジャーシュート",
                 "id": "konami_TS1",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "フォーチュントリニティ",
                 "id": "konami_FTRI",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "フォーチュントリニティ2",
                 "id": "konami_FTRI2",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "フォーチュントリニティ3",
                 "id": "konami_FTRI3",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ボンバーマン・ザ・メダル",
                 "id": "konami_BOMBER_MEDAL",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "マジカルシューター",
                 "id": "konami_MS",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "マーブルフィーバー",
                 "id": "konami_MARBLEFEVER",
-                "provider": "konami"
-            },
-            {
-                "name": "回せ！ギアドライヴ",
-                "id": "konami_GEAR_DRIVE",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "悪魔城ドラキュラ THE MEDAL",
                 "id": "konami_CVM",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "祭deフィーバー!!",
                 "id": "konami_MATSURI",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ＭＥＴＥＯＳＰＡＲＫ",
                 "id": "konami_METEOSPARK",
+                "updated": "2020-06-26",
                 "provider": "konami"
             }
         ]
@@ -764,21 +846,31 @@
             {
                 "name": "ALL.Net Wi-Fi",
                 "id": "sega_60",
+                "updated": "2020-06-26",
                 "provider": "sega"
             },
             {
                 "name": "PASELIチャージ機",
                 "id": "konami_PCHARGER",
+                "updated": "2020-06-26",
+                "provider": "konami"
+            },
+            {
+                "id": "konami_CARDCONNECT",
+                "name": "カードコネクト",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "ディズニーツムツム",
                 "id": "konami_TSUM",
+                "updated": "2020-06-26",
                 "provider": "konami"
             },
             {
                 "name": "占いコレクション トロッテ",
                 "id": "sega_47",
+                "updated": "2020-06-26",
                 "provider": "sega"
             }
         ]

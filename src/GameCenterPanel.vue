@@ -11,8 +11,19 @@
         <h4 class="category-title-block" :style="{'background': category.color}">
           {{ category.name }}
         </h4>
-        <ul>
-          <li v-for="game in category.games" :key="game.id">{{game.name}}</li>
+        <ul class="games-list">
+          <li v-for="game in category.games" :key="game.id" class="game">
+            <div class="game-main-info">
+              <img :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
+              <span class="count" v-if="game.info.count">×{{game.info.count}}</span>
+            </div>
+            <ul v-if="game.info.cabs && Object.keys(game.info.cabs).length" class="game-extra-info">
+              <li v-for="cab in Object.keys(game.info.cabs)" :key="cab">
+                {{game.cabs[cab]}}
+                <span class="count" v-if="game.info.cabs[cab]">x{{game.info.cabs[cab]}}</span>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -32,7 +43,14 @@ export default {
       }
       const result = []
       for (const category of this.gamesByCategory) {
-        const gamesForCategory = category.games.filter(game => this.gameCenter.gameIds.includes(game.id))
+        const gamesForCategory = category.games.map(game => {
+          if (Object.keys(this.gameCenter.games).includes(game.id)) {
+            game.info = this.gameCenter.games[game.id]
+            return game
+          }
+          return undefined
+        }).filter(g => g)
+
         if (gamesForCategory.length > 0) {
           result.push({
             id: category.id,
@@ -85,6 +103,7 @@ export default {
   flex: 1;
   margin: 0;
 }
+
 .panel-closer {
   position: absolute;
   right: 0.5em;
@@ -112,6 +131,53 @@ export default {
   box-shadow: 3px 3px 4px #bbb;
   display: flex;
   align-items: center;
+}
+
+li.game {
+  width:8em;
+  margin: 0.3em;
+}
+
+.game-main-info {
+  display: flex;
+  align-items: center;
+}
+
+.game-logo {
+  width: 6em;
+}
+
+.game-main-info .count {
+  padding-left: 0.3em;
+}
+
+.count {
+  font-weight: bold;
+}
+
+.game-extra-info li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7em;
+  letter-spacing: -0.1em;
+  padding-right: 0.3em;
+}
+
+.game-extra-info .count {
+  padding-left: 0.2em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.games-list, .game-extra-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 </style>
