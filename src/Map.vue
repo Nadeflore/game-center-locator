@@ -1,7 +1,7 @@
 <template>
   <div id="mapPanelContainer">
     <MessageBar v-if="statusMessage" :error="networkError">{{statusMessage}}</MessageBar>
-    <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter"  @change="updateFilteredGames"/>
+    <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter" @change="updateFilteredGames"/>
     <div id='map' :class="{'right-panel-open': selectedGameCenter}">
     </div>
     <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
@@ -14,6 +14,8 @@ import 'ol/ol.css'
 import Map from 'ol/Map'
 import View from 'ol/View'
 import Geolocation from 'ol/Geolocation.js'
+import Geocoder from 'ol-geocoder'
+import 'ol-geocoder/dist/ol-geocoder.min.css'
 import { fromLonLat, toLonLat } from 'ol/proj'
 import { Point } from 'ol/geom'
 import { Style, Circle as CircleStyle, Fill, Stroke, Icon } from 'ol/style'
@@ -186,6 +188,29 @@ export default {
           center,
           zoom
         })
+      })
+
+      // Add searchbox geocoding
+      var geocoder = new Geocoder('nominatim', {
+        provider: 'osm',
+        lang: 'jp',
+        placeholder: '検索',
+        limit: 0,
+        debug: false,
+        autoComplete: true,
+        keepOpen: false,
+        preventDefault: true
+      })
+      unwatchedStore.map.addControl(geocoder)
+
+      geocoder.on('addresschosen', function (evt) {
+        console.log(evt.coordinate)
+        unwatchedStore.map.getView().animate(
+          {
+            center: evt.coordinate,
+            zoom: 15
+          }
+        )
       })
 
       // Create empty vector source
@@ -477,13 +502,16 @@ export default {
   right: .5em;
   bottom: 7em;
 }
+.ol-geocoder.gcd-gl-container {
+  top: 4em;
+}
 .ol-touch .ol-zoom {
   bottom: 4em;
 }
 .ol-touch .center-map {
   bottom: 9em;
 }
-.right-panel-open .ol-control {
-  right: 20.5em;
+#filter-panel:not(.collapsed) + #map .ol-geocoder.gcd-gl-container {
+  left: 20.5em;
 }
 </style>
