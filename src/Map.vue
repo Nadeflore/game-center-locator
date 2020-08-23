@@ -194,6 +194,7 @@ export default {
       var geocoder = new Geocoder('nominatim', {
         provider: 'osm',
         lang: 'jp',
+        countrycodes: 'jp',
         placeholder: '検索',
         limit: 0,
         debug: false,
