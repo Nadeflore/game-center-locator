@@ -134,7 +134,7 @@ export default {
 }
 
 li.game {
-  width:8em;
+  width: 8em;
   margin: 0.3em;
 }
 
@@ -174,9 +174,9 @@ ul {
   padding: 0;
 }
 
-.games-list, .game-extra-info {
-  display: flex;
-  flex-wrap: wrap;
+.games-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 8em);
   justify-content: space-between;
 }
 

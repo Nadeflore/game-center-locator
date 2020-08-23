@@ -208,8 +208,8 @@ ul {
   padding-left: 0.5em;
 }
 .games-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 8em);
   justify-content: space-between;
 }
 
