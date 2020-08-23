@@ -517,4 +517,12 @@ export default {
 #filter-panel:not(.collapsed) + #map .ol-geocoder.gcd-gl-container {
   left: 20.5em;
 }
+
+/* Fix for geocoder */
+.ol-touch .ol-control.gcd-gl-control button {
+  font-size: 1.14em;
+}
+.ol-touch .gcd-gl-container {
+  font-size: 1.1em;
+}
 </style>
