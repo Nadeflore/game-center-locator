@@ -72,7 +72,7 @@ export default {
   position: absolute;
   width: 20em;
   right: 0;
-  z-index: 1;
+  z-index: 100;
   height: 100%;
   background: white;
   box-shadow: 0px 0px 5px #bbb;

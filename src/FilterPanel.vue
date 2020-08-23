@@ -124,7 +124,7 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 100;
   height: 100%;
   background: white;
   box-shadow: 3px 3px 4px #0003;
