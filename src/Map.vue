@@ -510,6 +510,9 @@ export default {
 .ol-touch .center-map {
   bottom: 9em;
 }
+.right-panel-open .ol-control:not(.gcd-gl-control) {
+  right: 20.5em;
+}
 #filter-panel:not(.collapsed) + #map .ol-geocoder.gcd-gl-container {
   left: 20.5em;
 }
