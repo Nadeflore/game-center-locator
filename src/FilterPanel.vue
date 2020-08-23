@@ -15,7 +15,8 @@
         <ul v-show="expandedCategoryIds.includes(category.id)" class="games-list">
           <li v-for="game in category.games" :key="game.id" class="game">
             <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black" size="1em">
-              <img :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
+              <img v-if="category.id !== 'medal'" :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
+              <p v-else>{{game.name}}</p>
             </Checkbox>
             <ul v-if="game.cabs && Object.keys(game.cabs).length" class="cabs">
               <li v-for="cab in Object.keys(game.cabs)" :key="cab">

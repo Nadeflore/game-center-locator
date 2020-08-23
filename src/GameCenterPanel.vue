@@ -14,7 +14,8 @@
         <ul class="games-list">
           <li v-for="game in category.games" :key="game.id" class="game">
             <div class="game-main-info">
-              <img :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
+              <img v-if="category.id !== 'medal'" :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
+              <p v-else>{{game.name}}</p>
               <span class="count" v-if="game.info.count">×{{game.info.count}}</span>
             </div>
             <ul v-if="game.info.cabs && Object.keys(game.info.cabs).length" class="game-extra-info">
