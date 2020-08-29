@@ -427,6 +427,14 @@ export default {
       unwatchedStore.source.dispatchEvent('change')
     }
   },
+  beforeCreate () {
+    // preload marker images before everything else
+    for (const logo of ['game', 'sega', 'taito', 'namco', 'round1']) {
+      for (const amount of ['s', 'm', 'l']) {
+        new Image().src = `/img/marker_${logo}_${amount}.png`
+      }
+    }
+  },
   mounted () {
     // Request games list
     axios.get('/data/games.json')
