@@ -430,7 +430,7 @@ export default {
   beforeCreate () {
     // preload marker images before everything else
     for (const logo of ['game', 'sega', 'taito', 'namco', 'round1']) {
-      for (const amount of ['s', 'm', 'l']) {
+      for (const amount of ['l', 'h', 'm']) {
         new Image().src = `/img/marker_${logo}_${amount}.png`
       }
     }
