@@ -130,21 +130,41 @@ export default {
     }
   },
   methods: {
+    parseViewString (viewString) {
+      if (!viewString) {
+        return null
+      }
+
+      const viewStringRegex = /@(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)z/
+      const match = viewStringRegex.exec(viewString)
+      if (match) {
+        return {
+          center: fromLonLat([+match[2], +match[1]]),
+          zoom: +match[3]
+        }
+      }
+
+      return null
+    },
     /**
      * Create basic map
      * Called only once at setup
      */
     createMap () {
       // Default view coordinates
-      let center = fromLonLat([135.4824549, 34.6826779])
-      let zoom = 12
+      let view = {
+        center: fromLonLat([135.4824549, 34.6826779]),
+        zoom: 12
+      }
 
       // Extract view from url
-      if (this.$route.params.view) {
-        const match = /@(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)z/.exec(this.$route.params.view)
-        if (match) {
-          center = fromLonLat([+match[2], +match[1]])
-          zoom = +match[3]
+      const viewFromUrl = this.parseViewString(this.$route.params.view)
+      if (viewFromUrl) {
+        view = viewFromUrl
+      } else {
+        const viewFromLocalStorage = this.parseViewString(localStorage.getItem('view'))
+        if (viewFromLocalStorage) {
+          view = viewFromLocalStorage
         }
       }
 
@@ -184,10 +204,7 @@ export default {
             })
           })
         ],
-        view: new View({
-          center,
-          zoom
-        })
+        view: new View(view)
       })
 
       // Add searchbox geocoding
@@ -260,9 +277,13 @@ export default {
         const coordinates = toLonLat(view.getCenter())
         const zoom = view.getZoom()
         const viewString = `@${coordinates[1]},${coordinates[0]},${zoom}z`
+        // Update url to contain current view info
         if (this.$route.params.view !== viewString) {
           this.$router.replace({ name: 'map', params: { view: viewString }, query: this.$route.query })
         }
+
+        // Add current view info to local storage
+        localStorage.setItem('view', viewString)
       })
     },
     /**
