@@ -233,21 +233,8 @@ export default {
       // Create empty vector source
       unwatchedStore.source = new VectorSource({})
 
-      const styleDot = new Style({
-        image: new CircleStyle({
-          radius: 2,
-          fill: new Fill({
-            color: '#2e508d'
-          })
-        })
-      })
-
       // Style for markers
       const getIconStyle = (feature) => {
-        if (unwatchedStore.map.getView().getZoom() < 11) {
-          return styleDot
-        }
-
         const gameCenter = feature.get('gameCenter')
         // game amount
         const gamesCount = Object.keys(gameCenter.games).length
@@ -411,16 +398,7 @@ export default {
           }
         )
         if (feature) {
-          if (unwatchedStore.map.getView().getZoom() < 11) {
-            unwatchedStore.map.getView().animate(
-              {
-                center: feature.getGeometry().getCoordinates(),
-                zoom: 12
-              }
-            )
-          } else {
-            this.selectedGameCenter = feature.get('gameCenter')
-          }
+          this.selectedGameCenter = feature.get('gameCenter')
         }
       })
 
