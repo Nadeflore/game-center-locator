@@ -243,8 +243,8 @@ export default {
       })
 
       // Style for markers
-      const getIconStyle = (feature) => {
-        if (unwatchedStore.map.getView().getZoom() < 11) {
+      const getIconStyle = (feature, resolution) => {
+        if (resolution > 70) {
           return styleDot
         }
 
@@ -411,7 +411,7 @@ export default {
           }
         )
         if (feature) {
-          if (unwatchedStore.map.getView().getZoom() < 11) {
+          if (unwatchedStore.map.getView().getResolution() > 70) {
             unwatchedStore.map.getView().animate(
               {
                 center: feature.getGeometry().getCoordinates(),
