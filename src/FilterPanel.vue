@@ -1,7 +1,7 @@
 <template>
   <div id="filter-panel" :class="{ collapsed }">
     <div id="filter-panel-header">
-      <h2>絞り込み</h2>
+      <h2>絞り込み : {{displayCount}}</h2>
     </div>
     <button id="panel-tab" @click="toogleCollapse">{{collapsed ? '▶' : '◀'}}</button>
     <div id="filter-panel-content">
@@ -46,7 +46,7 @@ export default {
   components: {
     Checkbox
   },
-  props: ['gamesByCategory', 'defaultSelectedGameIds', 'defaultGameAmountFilter'],
+  props: ['gamesByCategory', 'defaultSelectedGameIds', 'defaultGameAmountFilter', 'displayCount'],
   data () {
     return {
       selectedGameIds: this.defaultSelectedGameIds,
@@ -68,22 +68,25 @@ export default {
     }
   },
   methods: {
+    isGameSelected (gameId) {
+      return this.selectedGameIds.map(o => o.id).includes(gameId)
+    },
     getCategoryChecked (category) {
-      return category.gameIds.every(gameId => this.selectedGameIds.includes(gameId))
+      return category.gameIds.every(gameId => this.isGameSelected(gameId))
     },
     getCategoryIndeterminate (category) {
       const allSelected = this.getCategoryChecked(category)
-      const someSelected = category.gameIds.some(gameId => this.selectedGameIds.includes(gameId))
+      const someSelected = category.gameIds.some(gameId => this.isGameSelected(gameId))
       return someSelected && !allSelected
     },
     categoryStateChange (category, event) {
       if (event.target.checked) {
         // Add all games of this category
-        const gameIdsToAdd = category.gameIds.filter(gameId => !this.selectedGameIds.includes(gameId))
-        this.selectedGameIds = this.selectedGameIds.concat(gameIdsToAdd)
+        const gameIdsToAdd = category.gameIds.filter(gameId => !this.isGameSelected(gameId))
+        this.selectedGameIds = this.selectedGameIds.concat(gameIdsToAdd.map(id => ({ id })))
       } else {
         // Remove all games of this category
-        this.selectedGameIds = this.selectedGameIds.filter(gameId => !category.gameIds.includes(gameId))
+        this.selectedGameIds = this.selectedGameIds.filter(o => !category.gameIds.includes(o.id))
       }
     },
     toogleCollapse () {

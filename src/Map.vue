@@ -1,7 +1,7 @@
 <template>
   <div id="mapPanelContainer">
     <MessageBar v-if="statusMessage" :error="networkError">{{statusMessage}}</MessageBar>
-    <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter" @change="updateFilteredGames"/>
+    <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter" :displayCount="gamesCentersDisplayedCount" @change="updateFilteredGames"/>
     <div id='map' :class="{'right-panel-open': selectedGameCenter}">
     </div>
     <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
@@ -48,7 +48,8 @@ export default {
       gamesByCategory: [],
       gamesListLoaded: false,
       gameCentersLoaded: false,
-      networkError: false
+      networkError: false,
+      gamesCentersDisplayedCount: 0
     }
   },
   computed: {
@@ -114,11 +115,11 @@ export default {
           return []
         }
 
-        return filteredGameIdsString.split(',')
+        return filteredGameIdsString.split(',').map(s => { const d = /([^>]+)(?:>(\d+))?/.exec(s); return { id: d[1], min: d[2] } })
       },
       set (filteredGameIds) {
         if (filteredGameIds && filteredGameIds.length > 0) {
-          const filteredGameIdsString = filteredGameIds.join(',')
+          const filteredGameIdsString = filteredGameIds.map(o => o.id + (o.min ? `>${o.min}` : '')).join(',')
           if (filteredGameIdsString !== this.$route.query.filter) {
             this.$router.replace({ query: { ...this.$route.query, filter: filteredGameIdsString } })
           }
@@ -370,12 +371,29 @@ export default {
           }
 
           // Only keep game centers with a least `gameAmountFilter` of the selected games
-          return this.filteredGameIds.filter(gameId => gameCenterGames.includes(gameId)).length >= this.gameAmountFilter
+          return this.filteredGameIds.filter(o => {
+            // Keep games matching the conditon (gameId and count)
+            if (!gameCenterGames.includes(o.id)) {
+              return false
+            }
+
+            if (o.min) {
+              // Only keep if cabs count greater than requested amount
+              const count = gameCenter.games[o.id].count
+              if (!(count && count >= o.min)) {
+                return false
+              }
+            }
+
+            return true
+          }).length >= this.gameAmountFilter
         } else {
           // Only keep game centers with at least `gameAmountFilter` of games
           return Object.keys(gameCenter.games).length >= this.gameAmountFilter
         }
       })
+
+      this.gamesCentersDisplayedCount = featuresFiltered.length
 
       // clear existing markers
       unwatchedStore.source.clear()

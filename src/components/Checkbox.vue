@@ -21,9 +21,10 @@ export default {
   props: ['id', 'value', 'checked', 'indeterminate', 'color', 'size'],
   computed: {
     isChecked () {
-      // Re-implement v-model behaviour on checkboxes
+      // Implement v-model like behaviour on checkboxes
+      // But instead of having a list of id, it's a list of object containing an id`
       if (Array.isArray(this.checked)) {
-        return this.checked.includes(this.value)
+        return this.checked.map(o => o.id).includes(this.value)
       } else {
         return this.checked
       }
@@ -31,14 +32,15 @@ export default {
   },
   methods: {
     change (event) {
-      // Re-implement v-model behaviour on checkboxes
+      // Implement v-model like behaviour on checkboxes
+      // But instead of having a list of id, it's a list of object containing an id`
       if (Array.isArray(this.checked)) {
         const checked = this.checked.slice()
-        const found = checked.indexOf(this.value)
+        const found = checked.findIndex(o => o.id === this.value)
         if (found !== -1) {
           checked.splice(found, 1)
         } else {
-          checked.push(this.value)
+          checked.push({ id: this.value })
         }
         this.$emit('change', checked)
       } else {
