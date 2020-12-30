@@ -44,7 +44,7 @@ import Checkbox from './components/Checkbox.vue'
 export default {
   name: 'filterPanel',
   components: {
-    Checkbox
+    Checkbox,
   },
   props: ['gamesByCategory', 'defaultSelectedGameIds', 'defaultGameAmountFilter', 'displayCount'],
   data () {
@@ -52,7 +52,7 @@ export default {
       selectedGameIds: this.defaultSelectedGameIds,
       gameAmountFilter: this.defaultGameAmountFilter,
       collapsed: true,
-      expandedCategoryIds: []
+      expandedCategoryIds: [],
     }
   },
   computed: {
@@ -65,7 +65,7 @@ export default {
     },
     rangeMaximum () {
       return this.selectedGameIds.length || this.totalGames
-    }
+    },
   },
   methods: {
     isGameSelected (gameId) {
@@ -99,7 +99,7 @@ export default {
       } else {
         this.expandedCategoryIds.push(id)
       }
-    }
+    },
   },
   watch: {
     selectedGameIds (val, oldVal) {
@@ -117,8 +117,8 @@ export default {
     },
     gameAmountFilter (val) {
       this.$emit('change', this.selectedGameIds, val)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -207,10 +207,6 @@ h2 {
   height: 100%;
   padding: 0 1.5em;
 }
-ul {
-  list-style-type: none;
-  padding-left: 0.5em;
-}
 .games-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, 8em);
@@ -219,6 +215,10 @@ ul {
 
 .game {
   margin: 0.3em;
+}
+
+ul {
+  padding-left: 0.5em;
 }
 
 .cabs li {

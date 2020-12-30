@@ -4,6 +4,7 @@
     <FilterPanel :gamesByCategory="gamesByCategory" :defaultSelectedGameIds="filteredGameIds" :defaultGameAmountFilter="gameAmountFilter" :displayCount="gamesCentersDisplayedCount" @change="updateFilteredGames"/>
     <div id='map' :class="{'right-panel-open': selectedGameCenter}">
     </div>
+    <GameCenterListPopup :clickedGameCenters="clickedGameCenters" ref="popup"/>
     <GameCenterPanel :gameCenter="selectedGameCenter" :gamesByCategory="gamesByCategory" :filteredGameIds="filteredGameIds" @close="selectedGameCenter = null"/>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import axios from 'axios'
 import 'ol/ol.css'
 import Map from 'ol/Map'
+import Overlay from 'ol/Overlay'
 import View from 'ol/View'
 import Geolocation from 'ol/Geolocation.js'
 import Geocoder from 'ol-geocoder'
@@ -27,13 +29,17 @@ import Feature from 'ol/Feature'
 import FilterPanel from './FilterPanel.vue'
 import GameCenterPanel from './GameCenterPanel.vue'
 import MessageBar from './components/MessageBar.vue'
+import GameCenterListPopup from './components/GameCenterListPopup.vue'
+
+import { getIconUrlForGameCenter } from './utils/imageUtils.js'
 
 const unwatchedStore = {
   gameCenters: [],
   map: null,
   source: null,
   features: [],
-  markersLayer: null
+  markersLayer: null,
+  overlay: null,
 }
 
 export default {
@@ -41,7 +47,8 @@ export default {
   components: {
     FilterPanel,
     GameCenterPanel,
-    MessageBar
+    MessageBar,
+    GameCenterListPopup,
   },
   data () {
     return {
@@ -49,7 +56,8 @@ export default {
       gamesListLoaded: false,
       gameCentersLoaded: false,
       networkError: false,
-      gamesCentersDisplayedCount: 0
+      gamesCentersDisplayedCount: 0,
+      clickedGameCenters: [],
     }
   },
   computed: {
@@ -86,7 +94,7 @@ export default {
           const { selected, ...newQuery } = this.$route.query
           this.$router.replace({ query: newQuery })
         }
-      }
+      },
     },
     gameAmountFilter: {
       get () {
@@ -106,7 +114,7 @@ export default {
           const { filterAmount, ...newQuery } = this.$route.query
           this.$router.replace({ query: newQuery })
         }
-      }
+      },
     },
     filteredGameIds: {
       get () {
@@ -127,8 +135,8 @@ export default {
           const { filter, ...newQuery } = this.$route.query
           this.$router.replace({ query: newQuery })
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     parseViewString (viewString) {
@@ -141,7 +149,7 @@ export default {
       if (match) {
         return {
           center: fromLonLat([+match[2], +match[1]]),
-          zoom: +match[3]
+          zoom: +match[3],
         }
       }
 
@@ -155,7 +163,7 @@ export default {
       // Default view coordinates
       let view = {
         center: fromLonLat([135.4824549, 34.6826779]),
-        zoom: 12
+        zoom: 12,
       }
 
       // Extract view from url
@@ -183,17 +191,27 @@ export default {
 
           super({
             element,
-            target: options.target
+            target: options.target,
           })
 
           button.addEventListener('click', vueComponent.centerMapToUserLocation, false)
         }
       }
 
+      // Ovelay to hold the popup with list of clicked markers
+      unwatchedStore.overlay = new Overlay({
+        element: this.$refs.popup.$el,
+        positioning: 'top-center',
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250,
+        },
+      })
+
       // Create actual map
       unwatchedStore.map = new Map({
         controls: defaultControls().extend([
-          new CenterViewControl()
+          new CenterViewControl(),
         ]),
         target: 'map',
         layers: [
@@ -201,11 +219,12 @@ export default {
             source: new XYZ({
               url: 'https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
               // url: 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
-              attributions: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-            })
-          })
+              attributions: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            }),
+          }),
         ],
-        view: new View(view)
+        overlays: [unwatchedStore.overlay],
+        view: new View(view),
       })
 
       // Add searchbox geocoding
@@ -218,7 +237,7 @@ export default {
         debug: false,
         autoComplete: true,
         keepOpen: false,
-        preventDefault: true
+        preventDefault: true,
       })
       unwatchedStore.map.addControl(geocoder)
 
@@ -226,8 +245,8 @@ export default {
         unwatchedStore.map.getView().animate(
           {
             center: evt.coordinate,
-            zoom: 15
-          }
+            zoom: 15,
+          },
         )
       })
 
@@ -237,19 +256,6 @@ export default {
       // Style for markers
       const getIconStyle = (feature) => {
         const gameCenter = feature.get('gameCenter')
-        // game amount
-        const gamesCount = Object.keys(gameCenter.games).length
-        let amount
-        if (gamesCount <= 3) {
-          amount = 'l'
-        } else if (gamesCount > 15) {
-          amount = 'h'
-        } else {
-          amount = 'm'
-        }
-
-        // logo
-        const logo = gameCenter.logo || 'game'
 
         return new Style({
           image: new Icon({
@@ -258,9 +264,9 @@ export default {
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
             opacity: 0.90,
-            src: `/img/marker_${logo}_${amount}.png`
+            src: getIconUrlForGameCenter(gameCenter),
           }),
-          zIndex: this.selectedGameCenter === gameCenter ? 2 : undefined
+          zIndex: this.selectedGameCenter === gameCenter ? 2 : undefined,
         })
       }
 
@@ -268,7 +274,7 @@ export default {
       unwatchedStore.markersLayer = new VectorLayer({
         source: unwatchedStore.source,
         style: getIconStyle,
-        zIndex: 1
+        zIndex: 1,
       })
       unwatchedStore.map.addLayer(unwatchedStore.markersLayer)
 
@@ -294,10 +300,10 @@ export default {
     setupGeolocation () {
       unwatchedStore.geolocation = new Geolocation({
         trackingOptions: {
-          enableHighAccuracy: true
+          enableHighAccuracy: true,
         },
         tracking: true,
-        projection: unwatchedStore.map.getView().getProjection()
+        projection: unwatchedStore.map.getView().getProjection(),
       })
       const accuracyFeature = new Feature()
       unwatchedStore.geolocation.on('change:accuracyGeometry', () => {
@@ -309,13 +315,13 @@ export default {
         image: new CircleStyle({
           radius: 6,
           fill: new Fill({
-            color: '#3399CC'
+            color: '#3399CC',
           }),
           stroke: new Stroke({
             color: '#fff',
-            width: 2
-          })
-        })
+            width: 2,
+          }),
+        }),
       }))
 
       unwatchedStore.geolocation.on('change:position', () => {
@@ -325,15 +331,15 @@ export default {
 
       const positionLayer = new VectorLayer({
         source: new VectorSource({
-          features: [positionFeature]
+          features: [positionFeature],
         }),
-        zIndex: 3
+        zIndex: 3,
       })
       const accuracyLayer = new VectorLayer({
         source: new VectorSource({
-          features: [accuracyFeature]
+          features: [accuracyFeature],
         }),
-        zIndex: 0
+        zIndex: 0,
       })
       unwatchedStore.map.addLayer(accuracyLayer)
       unwatchedStore.map.addLayer(positionLayer)
@@ -347,8 +353,8 @@ export default {
       unwatchedStore.features = gameCenters.map((gameCenter) =>
         new Feature({
           geometry: new Point(fromLonLat([gameCenter.longitude, gameCenter.latitude])),
-          gameCenter
-        })
+          gameCenter,
+        }),
       )
     },
     /**
@@ -408,15 +414,25 @@ export default {
     setFeatureClickBehaviour () {
       // Set callback so that clicking a marker set it as selected
       unwatchedStore.map.on('click', (evt) => {
-        const feature = unwatchedStore.map.forEachFeatureAtPixel(
+        const features = []
+        unwatchedStore.map.forEachFeatureAtPixel(
           evt.pixel,
-          (feature, layer) => feature,
+          (feature, layer) => { features.push(feature) },
           {
-            layerFilter: layer => layer === unwatchedStore.markersLayer
-          }
+            layerFilter: layer => layer === unwatchedStore.markersLayer,
+          },
         )
-        if (feature) {
-          this.selectedGameCenter = feature.get('gameCenter')
+
+        // If more than one feature under pointer,
+        // display a popup with the list of features
+        if (features.length > 1) {
+          this.clickedGameCenters = features.map(f => f.get('gameCenter'))
+          this.$nextTick(() => { unwatchedStore.overlay.setPosition(evt.coordinate) })
+        } else {
+          unwatchedStore.overlay.setPosition(undefined)
+          if (features.length === 1) {
+            this.selectedGameCenter = features[0].get('gameCenter')
+          }
         }
       })
 
@@ -428,8 +444,8 @@ export default {
         const hit = unwatchedStore.map.hasFeatureAtPixel(
           pixel,
           {
-            layerFilter: layer => layer === unwatchedStore.markersLayer
-          }
+            layerFilter: layer => layer === unwatchedStore.markersLayer,
+          },
         )
 
         unwatchedStore.map.getTargetElement().style.cursor = hit ? 'pointer' : ''
@@ -447,10 +463,10 @@ export default {
       unwatchedStore.map.getView().animate(
         {
           center: coordinates,
-          zoom: 15
-        }
+          zoom: 15,
+        },
       )
-    }
+    },
   },
   watch: {
     filteredGameIds () {
@@ -464,7 +480,7 @@ export default {
     selectedGameCenter (newVal, oldVal) {
       // Update source to make selected icon bigger
       unwatchedStore.source.dispatchEvent('change')
-    }
+    },
   },
   beforeCreate () {
     // preload marker images before everything else
@@ -520,12 +536,16 @@ export default {
 
     // Setup feature click behaviour
     this.setFeatureClickBehaviour()
-  }
+  },
 }
 
 </script>
 
 <style>
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
 #mapPanelContainer {
   display: flex;
   width: 100%;

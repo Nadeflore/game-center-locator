@@ -57,13 +57,13 @@ export default {
             id: category.id,
             name: category.name,
             color: category.color,
-            games: gamesForCategory
+            games: gamesForCategory,
           })
         }
       }
       return result
-    }
-  }
+    },
+  },
 }
 
 </script>
@@ -168,11 +168,6 @@ li.game {
 
 .game-extra-info .count {
   padding-left: 0.2em;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
 }
 
 .games-list {

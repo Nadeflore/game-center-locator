@@ -8,7 +8,7 @@
 
 export default {
   name: 'messagebar',
-  props: ['error']
+  props: ['error'],
 }
 </script>
 

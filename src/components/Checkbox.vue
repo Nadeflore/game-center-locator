@@ -16,7 +16,7 @@ export default {
   name: 'checkbox',
   model: {
     prop: 'checked',
-    event: 'change'
+    event: 'change',
   },
   props: ['id', 'value', 'checked', 'indeterminate', 'color', 'size'],
   computed: {
@@ -28,7 +28,7 @@ export default {
       } else {
         return this.checked
       }
-    }
+    },
   },
   methods: {
     change (event) {
@@ -46,8 +46,8 @@ export default {
       } else {
         this.$emit('change', event)
       }
-    }
-  }
+    },
+  },
 }
 
 </script>
