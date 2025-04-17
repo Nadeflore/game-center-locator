@@ -15,8 +15,12 @@
         <ul v-show="expandedCategoryIds.includes(category.id)" class="games-list">
           <li v-for="game in category.games" :key="game.id" class="game">
             <Checkbox :id="game.id" :value="game.id" v-model="selectedGameIds" color="black" size="1em">
-              <img v-if="category.id !== 'medal'" :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
-              <p v-else>{{game.name}}</p>
+              <div class="game-info">
+                <div v-if="!['medal', 'puri'].includes(category.id)" class="game-logo">
+                  <img :src="`/img/games_logo/${game.id}.png`" :alt="game.name" :title="game.name"/>
+                </div>
+                <div class="game-name">{{game.name}}</div>
+              </div>
             </Checkbox>
             <ul v-if="game.cabs && Object.keys(game.cabs).length" class="cabs">
               <li v-for="cab in Object.keys(game.cabs)" :key="cab">
@@ -208,17 +212,19 @@ h2 {
   padding: 0 1.5em;
 }
 .games-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 8em);
   justify-content: space-between;
 }
 
 .game {
-  margin: 0.3em;
+  margin-bottom: 1em;
 }
 
 ul {
   padding-left: 0.5em;
+}
+
+.cabs {
+  padding-left: 2em;
 }
 
 .cabs li {
@@ -226,8 +232,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7em;
-  letter-spacing: -0.105em;
+  font-size: 0.9em;
+  letter-spacing: -0.05em;
 }
 
 button {
@@ -268,7 +274,21 @@ button:focus {
   appearance: none;
   background: #48f;
 }
+
+.game-info {
+  display: flex;
+}
 .game-logo {
-  width: 6em;
+  width: 4em;
+  display: flex;
+  align-items: center;
+  margin-right: 0.5em;
+}
+.game-logo img {
+  max-width: 100%;
+  height: auto;
+}
+.game-name {
+  flex: 1 ;
 }
 </style>

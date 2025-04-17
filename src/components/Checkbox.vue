@@ -66,6 +66,7 @@ export default {
 .checkbox-label {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 /* Outside circle representing checkbox */
 .checkbox-display {
@@ -103,5 +104,6 @@ export default {
 }
 .checkbox-label-display {
   margin-left: calc(var(--checkbox-size)/2);
+  flex: 1;
 }
 </style>

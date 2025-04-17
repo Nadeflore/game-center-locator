@@ -14,8 +14,10 @@
         <ul class="games-list">
           <li v-for="game in category.games" :key="game.id" class="game">
             <div class="game-main-info">
-              <img v-if="category.id !== 'medal'" :src="`/img/games_logo/${game.id}.png`" class="game-logo" :alt="game.name" :title="game.name"/>
-              <p v-else>{{game.name}}</p>
+              <div v-if="!['medal', 'puri'].includes(category.id)" class="game-logo">
+                  <img :src="`/img/games_logo/${game.id}.png`" :alt="game.name" :title="game.name"/>
+              </div>
+              <div class="game-name">{{game.name}}</div>
               <span class="count" v-if="game.info.count">×{{game.info.count}}</span>
             </div>
             <ul v-if="game.info.cabs && Object.keys(game.info.cabs).length" class="game-extra-info">
@@ -135,8 +137,7 @@ export default {
 }
 
 li.game {
-  width: 8em;
-  margin: 0.3em;
+  margin: 0.8em;
 }
 
 .game-main-info {
@@ -156,13 +157,17 @@ li.game {
   font-weight: bold;
 }
 
+.game-extra-info {
+  padding-left: 4.5em;
+}
+
 .game-extra-info li {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7em;
-  letter-spacing: -0.1em;
+  font-size: 0.9em;
+  letter-spacing: -0.05em;
   padding-right: 0.3em;
 }
 
@@ -170,10 +175,20 @@ li.game {
   padding-left: 0.2em;
 }
 
-.games-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 8em);
-  justify-content: space-between;
+.game-info {
+  display: flex;
 }
-
+.game-logo {
+  width: 4em;
+  display: flex;
+  align-items: center;
+  margin-right: 0.5em;
+}
+.game-logo img {
+  max-width: 100%;
+  height: auto;
+}
+.game-name {
+  flex: 1 ;
+}
 </style>
